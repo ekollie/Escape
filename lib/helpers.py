@@ -1,6 +1,7 @@
 import os
 import sys
 from models.display import Display
+from seed import bedroom, kitchen
 
 
 title_screen = Display(
@@ -29,6 +30,26 @@ help_screen = Display(
     width=28, 
 )
 
+bedroom_screen = Display(
+    title = bedroom.name,
+    content = bedroom.description,
+    options = [
+        "1. Inspect",
+    ],
+    width = 28
+)
+
+kitchen_screen = Display()
+
+
+####### Game functionality #######
+
+def get_options(screen):
+    options = [option.lower() for option in screen.options]
+    return options
+
+
+
 
 
 ###### Title Screen ######
@@ -46,7 +67,7 @@ def title_menu(recurred = False):
     selection = input("> ")
     # Checks user input
     if selection.lower() in options[0]:
-        start_game()
+        introduction()
     elif selection.lower() in options[1]:
         help_menu()
     elif selection.lower() in options[2]:
@@ -56,15 +77,9 @@ def title_menu(recurred = False):
 
 
 # Comments for title menu apply down here 
-def start_game(recurred = False):
+def introduction(recurred = False):
     os.system("clear")
-    options = [option.lower() for option in start_screen.options]
-    start_screen.print_screen()
-    if recurred: print("Please input valid command")
-    selection = input("> ")
-    if selection.lower() in options[0]:
-        title_menu()
-    start_game(recurred = True)
+
 
 def help_menu(recurred = False):
     os.system("clear")

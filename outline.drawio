@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="241x69rcG6a86sxX_imD" name="Page-1">
-        <mxGraphModel dx="2866" dy="1980" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1684" dy="2010" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -59,7 +59,7 @@
                 <mxCell id="21" value="library" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="-570" y="770" width="70" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" value="Torture room" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="24" value="Tickle room" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="-670" y="840" width="70" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="29" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="26" target="28">
@@ -71,7 +71,7 @@
                 <mxCell id="28" value="Secret room" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="-760" y="690" width="70" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="blah" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="31" value="Secret Room" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="-572.5" y="690" width="75" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="34" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="32" target="33">
@@ -89,7 +89,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="33" value="Move to adjacent room&lt;br&gt;Inspect obj" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="213.12" y="1190" width="138.75" height="130" as="geometry"/>
+                    <mxGeometry x="213.12" y="1220" width="138.75" height="130" as="geometry"/>
                 </mxCell>
                 <mxCell id="38" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="37">
                     <mxGeometry relative="1" as="geometry">
@@ -128,7 +128,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="47" value="Move" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="375" y="1270" width="110" height="110" as="geometry"/>
+                    <mxGeometry x="530" y="1220" width="110" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="62" style="edgeStyle=none;html=1;" edge="1" parent="1" source="53" target="33">
                     <mxGeometry relative="1" as="geometry">
@@ -136,13 +136,13 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="53" value="New room_screen" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="237.49" y="1410" width="90" height="90" as="geometry"/>
+                    <mxGeometry x="392.5" y="1410" width="90" height="90" as="geometry"/>
                 </mxCell>
                 <mxCell id="56" value="If possible" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="280" y="1370" width="150" height="80" as="geometry"/>
+                    <mxGeometry x="310" y="1340" width="150" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="58" value="If impossible" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="387.5" y="1170" width="100" height="70" as="geometry"/>
+                    <mxGeometry x="440" y="1140" width="100" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="64" value="&lt;h1&gt;Game loop&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
                     <mxGeometry x="200" y="1020" width="197.5" height="40" as="geometry"/>
