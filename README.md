@@ -1,27 +1,27 @@
-## House Adventure Game!
+# House Adventure Game!
 
 This is a CLI adventure game. The player mysteriously wakes up in a bedroom of a house. Throughout the house there are items and clues that lead to the players escape!
 
-# Create
+## Create
 
 Adding items to inventory
 
-# Read
+## Read
 
 Reading inventory
 Reading locations and items within the room
 
-# Update
+## Update
 
 Updating player location
 Updating lock status
 
-# Delete
+## Delete
 
 Deleting items from room
 Deleting items from inventory
 
-## User Story
+# User Story
 
 - User is able to inspect different locations throughout the room
 - User is able to inspect items from locations
@@ -31,9 +31,9 @@ Deleting items from inventory
 - User is able to check inventory
 - User is able to use items from inventory
 
-## Classes
+# Classes
 
-# Locations
-# Player
-# Display
-# Item
+## Locations
+## Player
+## Display
+## Item
