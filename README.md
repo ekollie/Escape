@@ -1,6 +1,6 @@
 # House Adventure Game!
 
-This is a CLI adventure game. The player mysteriously wakes up in a bedroom of a house. Throughout the house there are items and clues that lead to the players escape!
+This is a CLI adventure game. The player mysteriously wakes up in a bedroom of a house. Throughout the house, items and clues lead to the players escaping!
 
 ## Create
 
@@ -18,18 +18,18 @@ Updating lock status
 
 ## Delete
 
-Deleting items from room
+Deleting items from the room
 Deleting items from inventory
 
 # User Story
 
-- User is able to inspect different locations throughout the room
-- User is able to inspect items from locations
-- User is able to inspect locks
-- User is able to move through rooms when they are unlocked
-- User is able to add items to inventory
-- User is able to check inventory
-- User is able to use items from inventory
+- The user can inspect different locations throughout the room
+- The user can inspect items from locations
+- The user can inspect locks
+- The user can move through rooms when they are unlocked
+- The user can add items to inventory
+- The user can check inventory
+- The user can use items from inventory
 
 # Classes
 
