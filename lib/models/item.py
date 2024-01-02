@@ -1,9 +1,17 @@
+# Database class
+# Items take inspectable primary keys as foreign keys
+    # Database properties 
+        # Name
+        # Description
+
 
 class Item:
-
     def __init__(self):
         pass
 
 
-    # We need names, descriptions, we need locations
+    # Data
     
+
+    
+
