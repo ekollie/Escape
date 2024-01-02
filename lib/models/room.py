@@ -6,10 +6,19 @@ from models.connect import CURSOR, CONN
 
 
 class Room:
-    def __init__(self, name, locked, description):
+    def __init__(self, name = "", locked = True, description = ""):
         self.name = name
         self.locked = locked
         self.description = description
+
+    def add_to_table(self):
+        sql = f"""
+        INSERT INTO
+        rooms(name, locked)
+        VALUES('{self.name}', '{self.locked}')
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
 
     @property
     def name(self):
@@ -17,12 +26,9 @@ class Room:
 
     @name.setter
     def name(self, name):
-        CURSOR.execute(f"""
-            INSERT INTO
-            rooms(name, locked)
-            VALUES({name}, {self.locked})
-        """)
-        self._name = name
+        if isinstance(name, str):
+            self._name = name
+        else: raise Exception("Property Name must be a string")
 
     @property
     def locked(self):
@@ -30,12 +36,15 @@ class Room:
 
     @locked.setter
     def locked(self, locked):
-        CURSOR.execute(f"""
-            INSERT INTO
-            rooms(name, locked)
-            VALUES({self.name}, {locked})
-        """)
-        self._locked = locked
+        if isinstance(locked, bool):
+            self._locked = locked
+            CURSOR.execute(f"""
+                INSERT INTO
+                rooms(name, locked)
+                VALUES('{self.name}', '{self.locked}')
+            """)
+            CONN.commit()
+        else: raise Exception("Property Locked must be a boolean")
 
     @classmethod
     def create_table(cls):
@@ -59,31 +68,3 @@ class Room:
         CONN.commit()
 
 
-# Room.drop_table()
-# Room.create_table()
-
-# room_one = """
-#     INSERT INTO
-#     rooms(name, locked)
-#     VALUES('Bedroom', true)
-# """
-# CURSOR.execute(room_one)
-# CONN.commit()
-
-# room_two = """
-#     INSERT INTO
-#     rooms(name, locked)
-#     VALUES('Hallway', false)
-# """
-# CURSOR.execute(room_two)
-# CONN.commit()
-
-# room_three = """
-#     INSERT INTO
-#     rooms(name, locked)
-#     VALUES('Library', false)
-# """
-# CURSOR.execute(room_three)
-# CONN.commit()
-
-# Add name and locked attributes to name chart in SQL

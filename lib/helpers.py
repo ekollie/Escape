@@ -39,7 +39,13 @@ bedroom_screen = Display(
     width = 28
 )
 
-kitchen_screen = Display()
+kitchen_screen = Display(
+    title = kitchen.name,
+    content = kitchen.description,
+    options = [
+        "1. Inspect",
+    ]
+)
 
 
 ####### Game functionality #######
@@ -48,8 +54,9 @@ def get_options(screen):
     options = [option.lower() for option in screen.options]
     return options
 
-
-
+def get_room_screen(screen):
+    os.system("clear")
+    get_options()
 
 
 ###### Title Screen ######
@@ -79,6 +86,7 @@ def title_menu(recurred = False):
 # Comments for title menu apply down here 
 def introduction(recurred = False):
     os.system("clear")
+
 
 
 def help_menu(recurred = False):
