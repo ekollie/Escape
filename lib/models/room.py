@@ -11,6 +11,34 @@ class Room:
         self.locked = locked
         self.description = description
 
+    
+    @property
+    def name(self):
+        return self._name
+    @name.setter
+    def name(self, name):
+        if isinstance(name, str):
+            self._name = name
+        CURSOR.execute(f"""
+            INSERT INTO
+            rooms(name, locked)
+            VALUES({self.name}, {self.locked})
+        """)
+
+    @property
+    def locked(self):
+        return self._locked
+    @locked.setter
+    def locked(self, locked):
+        if isinstance(locked, bool):
+            self._locked = locked
+        CURSOR.execute(f"""
+            INSERT INTO
+            rooms(name, locked)
+            VALUES({self.name}, {self.locked})
+        """)
+
+
     @classmethod
     def create_table(cls):
         sql = """
