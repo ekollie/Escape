@@ -36,8 +36,7 @@ def introduction(recurred = False):
     if recurred: print("Please input valid command")
     selection = input("> ")
     player.name = selection
-    enter_bedroom()    
-
+    kitchen_room()    
 
     introduction(recurred = True)
         
@@ -59,9 +58,18 @@ def enter_dining_room():
 def escape():
     get_screen(escape_screen)
 
+def kitchen_inspect_screen():
+    get_screen(kitchen_inspect)
+
+def dining_room_inspect_screen():
+    get_screen(dining_room_inspect)
+
+def bedroom_inspect_screen():
+    get_screen(bedroom_inspect)
+
 
 title_screen = Display(
-    title = "Welcome to this game!",
+    title = "Welcome to our escape game!",
     content = "In this game, you will need to escape the house using clues and items you find in each room.",
     options = {
         "1. Play": introduction,
@@ -69,15 +77,6 @@ title_screen = Display(
         "3. Quit": quit_game
     },
     width = 28
-)
-
-escape_screen = Display(
-    title = "END GAME",
-    content = "Congratulations! You have escaped the house!",
-    options = {
-        "1. Return to menu" : title_menu
-    },
-    width = 28,
 )
 
 help_screen = Display(
@@ -89,31 +88,27 @@ help_screen = Display(
     width=28, 
 )
 
-kitchen_screen = Display(
-    title = kitchen.name,
-    content = kitchen.description,
-    options = {
-        "1. Inspect" : title_menu,
-        "2. Dining Room" : enter_dining_room,
-        },
-    width = 28
-)
-
-bedroom_screen = Display(
-    title = bedroom.name,
-    content = bedroom.description,
-    options = {
-        "1. Inspect" : title_menu,
-        "2. Escape" : escape,
-        },
-    width = 28,
-)
-
 introduction_screen = Display(
     title = "Name select",
     content = "What is your name?",
     options = {},
     width = 28,
+)
+
+kitchen_screen = Display(
+    title = kitchen.name,
+    content = kitchen.description,
+    options = {
+        "1. Inspect" : kitchen_inspect_screen,
+        "2. Dining Room" : enter_dining_room,
+        },
+    width = 28,
+)
+
+kitchen_inspect = Display(
+    title = kitchen.name,
+    content = "What would you like to inspect?",
+    width = 28
 )
 
 dining_room_screen = Display(
@@ -126,4 +121,21 @@ dining_room_screen = Display(
     width = 28,
 )
 
+bedroom_screen = Display(
+    title = bedroom.name,
+    content = bedroom.description,
+    options = {
+        "1. Inspect" : title_menu,
+        "2. Escape" : escape,
+        },
+    width = 28,
+)
 
+escape_screen = Display(
+    title = "END GAME",
+    content = "Congratulations! You have escaped the house!",
+    options = {
+        "1. Return to menu" : title_menu
+    },
+    width = 28,
+)

@@ -10,16 +10,17 @@ from models.inspectable import Inspectable
 Room.drop_table()
 Room.create_table()
 
-bedroom_description = """You now enter the bedroom. You notice that there is a broken BED against the far wall, a CLOSET with the doors torn off, a DESK with a mess of papers scattered everywhere and a door with a giant triangle shaped lock. You also notice that the door has been barred off with wooden PLANKS, preventing anyone from accessing the door. This must be the way out!"""
-bedroom = Room("Bedroom", True, bedroom_description)
-# bedroom.add_to_table()
-
 kitchen_description = """ You wake up, dazed and confused to find that you are in a mysterious, unknown kitchen that hasn't been used in a few years. You see a SINK with a pile of dirty dishes, some CABINETS with most of the cabinet doors barely hanging by the hinges, a TRASH CAN that is in bad need of being taken out, and a door with a square-shaped pad-lock that is locked. To escape, you will need to inspect each of these to find the clue that unlocks the door. What would you like to inspect first?"""
 kitchen = Room("Kitchen", True, kitchen_description)
 # kitchen.add_to_table()
 
 dining_room_description = """ You enter the next room which is a run down version of what used to be a nice looking dining room. You see a TABLE with a bunch of clutter on it, some CHAIRS, a busted in CHINA CABINET, and a BAR CART. There is also a door with a lock with a symbol of a circle on it. Find the key for this lock!"""
 dining_room = Room("Dining Room", False, dining_room_description)
+
+bedroom_description = """You now enter the bedroom. You notice that there is a broken BED against the far wall, a CLOSET with the doors torn off, a DESK with a mess of papers scattered everywhere and a door with a giant triangle shaped lock. You also notice that the door has been barred off with wooden PLANKS, preventing anyone from accessing the door. This must be the way out!"""
+bedroom = Room("Bedroom", True, bedroom_description)
+# bedroom.add_to_table()
+
 
 ##### Inspectable seeds ######
 Inspectable.drop_table()
