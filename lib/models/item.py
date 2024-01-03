@@ -6,7 +6,7 @@
 
 
 class Item:
-    def __init__(self):
+    def __init__(self, name, inspectable):
         pass
 
 
