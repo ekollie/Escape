@@ -1,6 +1,7 @@
 import os
 import sys
 from models.display import Display
+from models.player import player
 from seed import (
     bedroom,
     kitchen,
@@ -13,7 +14,7 @@ def get_options(screen):
     options = [option for option in screen.options]
     return options
 
-def get_room_screen(screen, recurred = False):
+def get_screen(screen, recurred = False):
     os.system("clear")
     screen.print_screen()
     if recurred: print("Please input valid command")
@@ -21,22 +22,36 @@ def get_room_screen(screen, recurred = False):
     for option in get_options(screen):
         if selection.lower() in option.lower():
             screen.options[option]()
-    get_room_screen(screen, recurred = True)
+    get_screen(screen, recurred = True)
             
 
 
 ###### Screens ######
 def title_menu():
-    get_room_screen(title_screen)
+    get_screen(title_screen)
 
-def introduction():
-    get_room_screen(kitchen_screen)
+def introduction(recurred = False):
+    os.system("clear")
+    introduction_screen.print_screen()
+    if recurred: print("Please input valid command")
+    selection = input("> ")
+    player.name = selection
+    enter_bedroom()    
+
+
+    introduction(recurred = True)
         
 def help_menu():
-    get_room_screen(help_screen)
+    get_screen(help_screen)
 
 def quit_game():
     sys.exit()
+
+def kitchen_room():
+    get_screen(kitchen_screen)
+
+def enter_bedroom():
+    get_screen(bedroom_screen)
 
 
 title_screen = Display(
@@ -61,9 +76,26 @@ kitchen_screen = Display(
     title = kitchen.name,
     content = kitchen.description,
     options = {
-        "1. Inspect" : title_menu
+        "1. Inspect" : title_menu,
+        "2. Bedroom" : enter_bedroom
         },
     width = 28
+)
+
+bedroom_screen = Display(
+    title = bedroom.name,
+    content = bedroom.description,
+    options = {
+        "1. Inspect" : title_menu,
+        "2. Kitchen" : kitchen_room
+        },
+    width = 28
+)
+
+introduction_screen = Display(
+    title = "Name select",
+    content = "What is your name?",
+    options = {}
 )
 
 
