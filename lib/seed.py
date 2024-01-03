@@ -1,8 +1,9 @@
-import os, sys
+import os
+import sys
 from models.room import Room
 from models.connect import CURSOR, CONN
 from models.display import Display
-
+from models.inspectable import Inspectable
 
 
 ##### Room seeds ######
@@ -20,16 +21,9 @@ kitchen = Room("Kitchen", True, kitchen_description)
 dining_room_description = """ You see a table, some chairs, china cabinet, and a bar cart"""
 dining_room = Room("Dining Room", False, dining_room_description)
 
+Inspectable.drop_table()
+Inspectable.create_table()
 
-
-
+sink_description = """ You look inside the sink and find a key with a square shaped end."""
+sink = Inspectable("Sink", 2, False, sink_description)
 ###### Item seeds ######
-
-
-
-
-
-
-
-
-

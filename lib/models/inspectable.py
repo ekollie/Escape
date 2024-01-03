@@ -1,12 +1,11 @@
 # Database
 # Take room primary key as foreign key
 from connect import CONN, CURSOR
-from room import *
 
 
 class Inspectable:
 
-    def __init__(self, name, room, locked):
+    def __init__(self, name='', room=0, locked=True):
         self.name = name
         self.room = room
         self.locked = locked
@@ -15,7 +14,7 @@ class Inspectable:
         sql = f"""
             INSERT INTO
             inspectables(name, room, locked)
-            VALUES('{self.name}', {self.room}, '{self.locked}')
+            VALUES('{self.name}', '{self.room}', '{self.locked}')
         """
         CURSOR.execute(sql)
         CONN.commit()
@@ -50,6 +49,12 @@ class Inspectable:
     def locked(self, locked):
         if isinstance(locked, bool):
             self._locked = locked
+            CURSOR.execute(f"""
+                INSERT INTO
+                rooms(name, locked)
+                VALUES('{self.name}', '{self.room}', '{self.locked}')
+            """)
+            CONN.commit()
         else:
             raise Exception("Property Locked must be a boolean")
 
