@@ -56,7 +56,7 @@ def enter_bedroom():
 
 title_screen = Display(
     title = "Welcome to this game!",
-    content = "Main content will go here",
+    content = "In this game, you will need to escape the house using clues and items you find in each room.",
     options = {
         "1. Play": introduction,
         "2. Help": help_menu,
@@ -66,7 +66,7 @@ title_screen = Display(
 )
 help_screen = Display(
     title="Help Page", 
-    content="The purpose of this paragraph is to test the dynamic formatting of the text area. For this to be considered a success, the text must be formatted to fit the size of the text box. There must not many any duplicates in the text lines.",
+    content="Each room you visit will give you a list of inspectable locations within the room that you may click to to search for clues to escape.",
     options={
         "1. Return" : title_menu
     },
