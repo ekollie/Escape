@@ -53,6 +53,12 @@ def kitchen_room():
 def enter_bedroom():
     get_screen(bedroom_screen)
 
+def enter_dining_room():
+    get_screen(dining_room_screen)
+
+def escape():
+    get_screen(escape_screen)
+
 
 title_screen = Display(
     title = "Welcome to this game!",
@@ -64,6 +70,16 @@ title_screen = Display(
     },
     width = 28
 )
+
+escape_screen = Display(
+    title = "END GAME",
+    content = "Congratulations! You have escaped the house!",
+    options = {
+        "1. Return to menu" : title_menu
+    },
+    width = 28,
+)
+
 help_screen = Display(
     title="Help Page", 
     content="Each room you visit will give you a list of inspectable locations within the room that you may click to to search for clues to escape.",
@@ -72,12 +88,13 @@ help_screen = Display(
     },
     width=28, 
 )
+
 kitchen_screen = Display(
     title = kitchen.name,
     content = kitchen.description,
     options = {
         "1. Inspect" : title_menu,
-        "2. Bedroom" : enter_bedroom
+        "2. Dining Room" : enter_dining_room,
         },
     width = 28
 )
@@ -87,15 +104,26 @@ bedroom_screen = Display(
     content = bedroom.description,
     options = {
         "1. Inspect" : title_menu,
-        "2. Kitchen" : kitchen_room
+        "2. Escape" : escape,
         },
-    width = 28
+    width = 28,
 )
 
 introduction_screen = Display(
     title = "Name select",
     content = "What is your name?",
-    options = {}
+    options = {},
+    width = 28,
+)
+
+dining_room_screen = Display(
+    title = dining_room.name,
+    content = dining_room.description,
+    options = {
+        "1. Inspect" : title_menu,
+        "2. Bedroom" : enter_bedroom,
+    },
+    width = 28,
 )
 
 
