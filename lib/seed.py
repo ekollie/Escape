@@ -25,5 +25,5 @@ Inspectable.drop_table()
 Inspectable.create_table()
 
 sink_description = """ You look inside the sink and find a key with a square shaped end."""
-sink = Inspectable("Sink", 2, False, sink_description)
+sink = Inspectable("Sink", kitchen, False, sink_description)
 ###### Item seeds ######

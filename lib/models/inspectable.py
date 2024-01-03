@@ -1,11 +1,11 @@
 # Database
 # Take room primary key as foreign key
 from connect import CONN, CURSOR
-
+from room import Room
 
 class Inspectable:
 
-    def __init__(self, name='', room=0, locked=True):
+    def __init__(self, name='', room = None, locked=True):
         self.name = name
         self.room = room
         self.locked = locked
@@ -36,11 +36,17 @@ class Inspectable:
 
     @room.setter
     def room(self, room):
-        if isinstance(room, int):
-            self._room = room
+        if isinstance(room, Room):
+            sql = f"""
+                SELECT id FROM rooms 
+                WHERE name = {room}
+            """
+            CURSOR.execute(sql)
+            CONN.commit()
+            self._room = CURSOR.execute(sql)
         else:
             raise Exception("Property Room must be a integer")
-
+        
     @property
     def locked(self):
         return self._locked
