@@ -56,6 +56,16 @@ circle_lock = Inspectable("Circle Lock", dining_room, False, circle_lock_descrip
 bed_description = """You pull the blankets off the bed but do not find any usefull clues."""
 bed = Inspectable("Bed", bedroom, False, bed_description)
 
+closet_description = """You make your way to the closet and search through the tattered clothes. You find an old baseball bat that you might could use."""
+closet = Inspectable("Closet", bedroom, False, closet_description)
 
+desk_description = """You search through the papers on the desk but don't find anything you can use. You open a drawer and find a key with the triangle symbol! You are almost free!"""
+desk = Inspectable("Desk", bedroom, False, desk_description)
+
+planks_description = """You run to the door with with the triangle shaped key in excitment about getting out but you remember you need to get through the planks. What do you use to get through these?"""
+planks = Inspectable("Planks", bedroom, False, planks_description)
+
+triangle_lock_description = """You finally get through the planks and are now at the triangle shaped lock! Would you like to use the key?"""
+triangle_lock = Inspectable("Triangle Lock", bedroom, False, triangle_lock_description)
 
 ###### Item seeds ######
