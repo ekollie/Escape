@@ -1,6 +1,6 @@
 # Database
 # Take room primary key as foreign key
-from connect import CONN, CURSOR
+from models.connect import CONN, CURSOR
 from room import Room
 
 class Inspectable:
@@ -9,12 +9,13 @@ class Inspectable:
         self.name = name
         self.room = room
         self.locked = locked
+        self.description = description
 
     def add_to_table(self):
         sql = f"""
             INSERT INTO
             inspectables(name, room, locked)
-            VALUES('{self.name}', '{self.room}', '{self.locked}')
+            VALUES('{self.name}', {self.room}, '{self.locked}')
         """
         CURSOR.execute(sql)
         CONN.commit()
@@ -57,8 +58,8 @@ class Inspectable:
             self._locked = locked
             CURSOR.execute(f"""
                 INSERT INTO
-                rooms(name, locked)
-                VALUES('{self.name}', '{self.room}', '{self.locked}')
+                inspectable(name, room, locked)
+                VALUES('{self.name}', {self.room}, '{self.locked}')
             """)
             CONN.commit()
         else:
@@ -72,8 +73,7 @@ class Inspectable:
             id INTEGER PRIMARY KEY,
             name TEXT,
             room INTEGER, -- Assuming room is a foreign key
-            locked BOOLEAN,
-            FOREIGN KEY (room) REFERENCE Room(room) -- Adding foreign key constraints
+            locked BOOLEAN
             );
         """
         CURSOR.execute(sql)
