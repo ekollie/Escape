@@ -115,10 +115,16 @@ dining_room_screen = Display(
     title = dining_room.name,
     content = dining_room.description,
     options = {
-        "1. Inspect" : title_menu,
+        "1. Inspect" : dining_room_inspect_screen,
         "2. Bedroom" : enter_bedroom,
     },
     width = 28,
+)
+
+dining_room_inspect = Display(
+    title = dining_room.name,
+    content = "What would you like to inspect?",
+    width = 28
 )
 
 bedroom_screen = Display(
@@ -129,6 +135,11 @@ bedroom_screen = Display(
         "2. Escape" : escape,
         },
     width = 28,
+)
+bedroom_inspect = Display(
+    title = bedroom.name,
+    content = "What would you like to inspect?",
+    width = 28
 )
 
 escape_screen = Display(

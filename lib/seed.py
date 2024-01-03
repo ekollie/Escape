@@ -4,6 +4,7 @@ from models.room import Room
 from models.connect import CURSOR, CONN
 from models.display import Display
 from models.inspectable import Inspectable
+from models.item import Item
 
 
 ##### Room seeds ######
@@ -53,7 +54,6 @@ bar_cart = Inspectable("Bar Cart", dining_room, False, bar_cart_description)
 circle_lock_description = """You approach the door with the circle symbol. Do you want to use the key that you found?"""
 circle_lock = Inspectable("Circle Lock", dining_room, False, circle_lock_description)
 
-# bedroom: bed, closet, desk, planks, triangle lock
 bed_description = """You pull the blankets off the bed but do not find any usefull clues."""
 bed = Inspectable("Bed", bedroom, False, bed_description)
 
@@ -70,3 +70,8 @@ triangle_lock_description = """You finally get through the planks and are now at
 triangle_lock = Inspectable("Triangle Lock", bedroom, False, triangle_lock_description)
 
 ###### Item seeds ######
+Item.drop_table()
+Item.create_table()
+
+square_key_description = """You have a key with a square shaped end that fits to a specific lock"""
+square_key = Item("Square Key", sink, square_key_description)
