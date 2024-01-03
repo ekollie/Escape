@@ -21,9 +21,19 @@ kitchen = Room("Kitchen", True, kitchen_description)
 dining_room_description = """ You see a table, some chairs, china cabinet, and a bar cart"""
 dining_room = Room("Dining Room", False, dining_room_description)
 
+##### Inspectable seeds ######
 Inspectable.drop_table()
 Inspectable.create_table()
 
 sink_description = """ You look inside the sink and find a key with a square shaped end."""
 sink = Inspectable("Sink", kitchen, False, sink_description)
+
+cabinet_description = """You check the cabinets but you don't find any clues or items that will help you unlock the door."""
+cabinet = Inspectable("Cabinet", kitchen, False, cabinet_description)
+
+trash_can_description = """You search through the trash can and find a crowbar. Maybe this will help you in your journey."""
+trash_can = Inspectable("Trash Can", kitchen, False, trash_can_description)
+
+square_lock_description = """You approch the square shaped lock. Do you want to use your key?"""
+square_lock = Inspectable("Square Lock", kitchen, False, square_lock_description)
 ###### Item seeds ######
