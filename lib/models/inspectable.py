@@ -1,24 +1,34 @@
 # Database
 # Take room primary key as foreign key
 from models.connect import CONN, CURSOR
-from room import Room
+from models.room import Room
 
 class Inspectable:
 
-    def __init__(self, name='', room = None, locked=True):
+    def __init__(self, name='', room = None, locked=True, description = ""):
         self.name = name
         self.room = room
         self.locked = locked
         self.description = description
 
-    def add_to_table(self):
+    # def add_to_table(self):
+    #     sql = f"""
+    #         INSERT INTO
+    #         inspectables(name, room, locked)
+    #         VALUES('{self.name}', '{self.room}', '{self.locked}')
+    #     """
+    #     CURSOR.execute(sql)
+    #     CONN.commit()
+
+    def grab_foreign_key(self, room):
         sql = f"""
-            INSERT INTO
-            inspectables(name, room, locked)
-            VALUES('{self.name}', {self.room}, '{self.locked}')
-        """
+            SELECT id FROM rooms
+            WHERE name = '{room.name}'
+            """
         CURSOR.execute(sql)
-        CONN.commit()
+        self.room_key = CURSOR.fetchone()
+        self.room_key
+        return self.room_key[0]
 
     @property
     def name(self):
@@ -38,15 +48,9 @@ class Inspectable:
     @room.setter
     def room(self, room):
         if isinstance(room, Room):
-            sql = f"""
-                SELECT id FROM rooms 
-                WHERE name = {room}
-            """
-            CURSOR.execute(sql)
-            CONN.commit()
-            self._room = CURSOR.execute(sql)
+            self._room = room
         else:
-            raise Exception("Property Room must be a integer")
+            raise Exception("Property Room must be of Room class")
         
     @property
     def locked(self):
@@ -59,7 +63,7 @@ class Inspectable:
             CURSOR.execute(f"""
                 INSERT INTO
                 inspectable(name, room, locked)
-                VALUES('{self.name}', {self.room}, '{self.locked}')
+                VALUES('{self.name}', '{self.grab_foreign_key(self.room)}', '{self.locked}')
             """)
             CONN.commit()
         else:
