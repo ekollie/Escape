@@ -1,26 +1,99 @@
 import os
 import sys
 from models.room import Room
-from models.connect import CURSOR, CONN
 from models.display import Display
 from models.inspectable import Inspectable
 from models.item import Item
+from models.player import Player
+
+
+title_screen = Display(
+    title = "Welcome to our escape game!",
+    content = "In this game, you will need to escape the house using clues and items you find in each room.",
+    options = {},
+    width = 28
+)
+
+help_screen = Display(
+    title="Help Page", 
+    content="Each room you visit will give you a list of inspectable locations within the room that you may click to to search for clues to escape.",
+    options={},
+    width=28, 
+)
+
+
+introduction_screen = Display(
+    title = "Name select",
+    content = "What is your name?",
+    width = 28,
+)
+kitchen_description = """ You wake up, dazed and confused to find that you are in a mysterious, unknown kitchen that hasn't been used in a few years. You see a SINK with a pile of dirty dishes, some CABINETS with most of the cabinet doors barely hanging by the hinges, a TRASH CAN that is in bad need of being taken out, and a door with a square-shaped pad-lock that is locked. To escape, you will need to inspect each of these to find the clue that unlocks the door. What would you like to inspect first?"""
+kitchen_screen = Display(
+    title = "Kitchen",
+    content = kitchen_description,
+    options = {},
+    width = 28,
+)
+
+kitchen_inspect = Display(
+    title = "Kitchen",
+    content = "What would you like to inspect?",
+    options = {},
+    width = 28
+)
+dining_room_description = """ You enter the next room which is a run down version of what used to be a nice looking dining room. You see a TABLE with a bunch of clutter on it, some CHAIRS, a busted in CHINA CABINET, and a BAR CART. There is also a door with a lock with a symbol of a circle on it. Find the key for this lock!"""
+dining_room_screen = Display(
+    title = "Dining Room",
+    content = dining_room_description,
+    options = {},
+    width = 28,
+)
+
+dining_room_inspect = Display(
+    title = "Dining Room",
+    content = "What would you like to inspect?",
+    width = 28
+)
+
+bedroom_description = """You now enter the bedroom. You notice that there is a broken BED against the far wall, a CLOSET with the doors torn off, a DESK with a mess of papers scattered everywhere and a door with a giant triangle shaped lock. You also notice that the door has been barred off with wooden PLANKS, preventing anyone from accessing the door. This must be the way out!"""
+bedroom_screen = Display(
+    title = "Bedroom",
+    content = bedroom_description,
+    options = {},
+    width = 28,
+)
+bedroom_inspect = Display(
+    title = "Bedroom",
+    content = "What would you like to inspect?",
+    width = 28
+)
+
+escape_screen = Display(
+    title = "END GAME",
+    content = "Congratulations! You have escaped the house!",
+    options = {},
+    width = 28,
+)
+
+
 
 
 ##### Room seeds ######
 Room.drop_table()
 Room.create_table()
 
-kitchen_description = """ You wake up, dazed and confused to find that you are in a mysterious, unknown kitchen that hasn't been used in a few years. You see a SINK with a pile of dirty dishes, some CABINETS with most of the cabinet doors barely hanging by the hinges, a TRASH CAN that is in bad need of being taken out, and a door with a square-shaped pad-lock that is locked. To escape, you will need to inspect each of these to find the clue that unlocks the door. What would you like to inspect first?"""
-kitchen = Room("Kitchen", True, kitchen_description)
+kitchen = Room("Kitchen", locked = False, description = kitchen_description, screen =  kitchen_screen)
 # kitchen.add_to_table()
 
-dining_room_description = """ You enter the next room which is a run down version of what used to be a nice looking dining room. You see a TABLE with a bunch of clutter on it, some CHAIRS, a busted in CHINA CABINET, and a BAR CART. There is also a door with a lock with a symbol of a circle on it. Find the key for this lock!"""
-dining_room = Room("Dining Room", False, dining_room_description)
 
-bedroom_description = """You now enter the bedroom. You notice that there is a broken BED against the far wall, a CLOSET with the doors torn off, a DESK with a mess of papers scattered everywhere and a door with a giant triangle shaped lock. You also notice that the door has been barred off with wooden PLANKS, preventing anyone from accessing the door. This must be the way out!"""
-bedroom = Room("Bedroom", True, bedroom_description)
+dining_room = Room("Dining Room", locked = False, description = dining_room_description, screen = dining_room_screen)
+
+
+bedroom = Room("Bedroom", locked = False, description = bedroom_description , screen = bedroom_screen)
 # bedroom.add_to_table()
+
+
+###### Display seeds + helper functions ######
 
 
 ##### Inspectable seeds ######
@@ -75,3 +148,13 @@ Item.create_table()
 
 square_key_description = """You have a key with a square shaped end that fits to a specific lock"""
 square_key = Item("Square Key", sink, square_key_description)
+
+###### Player seed ######
+player = Player("No name", kitchen)
+
+    
+# def get_current_location_screen(desired_location):
+#     player.move(desired_location, "You cannot use this door")
+#     get_screen(player.current_location.screen)
+            
+

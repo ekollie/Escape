@@ -6,10 +6,11 @@ from models.connect import CURSOR, CONN
 
 
 class Room:
-    def __init__(self, name = "", locked = True, description = ""):
+    def __init__(self, name = "", locked = True, description = "", screen = None):
         self.name = name
         self.locked = locked
         self.description = description
+        self.screen = screen
 
     def add_to_table(self):
         sql = f"""

@@ -1,5 +1,5 @@
 class Display:
-    def __init__(self, border_head="+", border_body="-", title="", content="", options=[], width=0, alt_border_head="|", alt_border_body = "="):
+    def __init__(self, border_head="+", border_body="-", title="", content="", options={}, width=0, alt_border_head="|", alt_border_body = "="):
         self.title = title
         self.border_head = border_head
         self.border_body = border_body
