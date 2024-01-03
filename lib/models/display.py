@@ -79,9 +79,9 @@ class Display:
         return self._options
     @options.setter
     def options(self, options):
-        if not isinstance(options, list):
-            raise Exception("options must be a list")
-        else:
+        # if not isinstance(options, list):
+        #     raise Exception("options must be a list")
+        # else:
             self._options = options
     
     @property
