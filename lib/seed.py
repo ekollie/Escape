@@ -13,7 +13,7 @@ bedroom_description = """You see a bed in the corner of a cream colored room. At
 bedroom = Room("Bedroom", True, bedroom_description)
 # bedroom.add_to_table()
 
-kitchen_description = """ You see a sink, some cabinets, and a trash can"""
+kitchen_description = """ You wake up, dazed and confused to find that you are in a mysterious, unknown kitchen that hasn't been used in a few years. You see a sink with a pile of dirty dishes, some cabinets with most of the cabinet doors barely hanging by the hinges, a trash can that is in bad need of being taken out, and a door with a square-shaped pad-lock that is locked. To escape, you will need to inspect each of these to find the clue that unlocks the door. What would you like to do?"""
 kitchen = Room("Kitchen", True, kitchen_description)
 # kitchen.add_to_table()
 
