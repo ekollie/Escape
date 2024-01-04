@@ -21,6 +21,12 @@ help_screen = Display(
     width=28, 
 )
 
+inventory_screen = Display(
+    title = "",
+    content = "",
+    options = {},
+    width = 28
+)
 
 introduction_screen = Display(
     title = "Name select",

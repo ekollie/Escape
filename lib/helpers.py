@@ -48,12 +48,27 @@ def inspect(recurred = False):
 
 def handle_inspectable(inspectable):
     current_player_location = lambda : get_screen(player.current_location.screen)
+    add_item = lambda: take_item(inspectable[0])
     inspectable_screen.title = f"{inspectable[0]}"
     inspectable_screen.content = f"{inspectable[1]}"
-    inspectable_screen.options = {"1. Return" : current_player_location}
+    inspectable_screen.options = {"1. Return" : current_player_location, "2. Take Item" : add_item}
     get_screen(inspectable_screen)
+    
+def take_item(inspectable):
+    item = [item.name for item in Item.all if item.inspectable.name == inspectable][0]
+    player.add_to_inventory(item)
+
 
 ###### Screens ######
+def show_inventory():
+    current_player_location = lambda : get_screen(player.current_location.screen)
+    inventory_screen.options = {"1. Return" : current_player_location}
+    content = ""
+    for item in player.inventory:
+        content += f"{item}\n"
+    inventory_screen.content = content
+    get_screen(inventory_screen)
+
 def title_menu():
     title_screen.options = {
         "1. Play" : introduction,
@@ -68,6 +83,7 @@ def introduction(recurred = False):
     if recurred: print("Please input valid command")
     selection = input("> ")
     player.name = selection
+    inventory_screen.title = player.name
     kitchen_room()    
 
     introduction(recurred = True)
@@ -99,7 +115,9 @@ def enter_dining_room():
     if dining_room.locked is False:
         dining_room_screen.options = {
         "1. Inspect" : inspect,
-        "2. Bedroom" : enter_bedroom
+        "2. Bedroom" : enter_bedroom,
+        "3. Kitchen" : kitchen_room,
+        "4. Inventory" : show_inventory
     }
         move_player(dining_room)
 

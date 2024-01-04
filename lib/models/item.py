@@ -7,10 +7,12 @@ from models.connect import CONN, CURSOR
 from models.inspectable import Inspectable
 
 class Item:
+    all = []
     def __init__(self, name = "", inspectable = None, description = ""):
         self.name = name
         self.description = description
         self.inspectable = inspectable
+        Item.all.append(self)
 
     def grab_foreign_key(self, inspectable):
         sql = f"""
