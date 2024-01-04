@@ -6,7 +6,7 @@ from models.connect import CURSOR, CONN
 
 
 class Room:
-    def __init__(self, name = "", locked = True, description = "", screen = None):
+    def __init__(self, name="", locked=True, description="", screen=None):
         self.name = name
         self.locked = locked
         self.description = description
@@ -20,7 +20,7 @@ class Room:
         """
         CURSOR.execute(sql)
         CONN.commit()
-    
+
     def grab_primary_key(self):
         sql = f"""
             SELECT id
@@ -39,7 +39,8 @@ class Room:
     def name(self, name):
         if isinstance(name, str):
             self._name = name
-        else: raise Exception("Property Name must be a string")
+        else:
+            raise Exception("Property Name must be a string")
 
     @property
     def locked(self):
@@ -49,13 +50,16 @@ class Room:
     def locked(self, locked):
         if isinstance(locked, bool):
             self._locked = locked
-            CURSOR.execute(f"""
+        else:
+            raise Exception("Property Locked must be a boolean")
+
+    def insert_rows(self):
+        CURSOR.execute(f"""
                 INSERT INTO
                 rooms(name, locked)
                 VALUES('{self.name}', '{self.locked}')
             """)
-            CONN.commit()
-        else: raise Exception("Property Locked must be a boolean")
+        CONN.commit()
 
     @classmethod
     def create_table(cls):
@@ -77,5 +81,3 @@ class Room:
         """
         CURSOR.execute(sql)
         CONN.commit()
-
-

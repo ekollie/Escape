@@ -8,84 +8,84 @@ from models.player import Player
 
 
 title_screen = Display(
-    title = "Welcome to our escape game!",
-    content = "In this game, you will need to escape the house using clues and items you find in each room.",
-    options = {},
-    width = 28
+    title="Welcome to our escape game!",
+    content="In this game, you will need to escape the house using clues and items you find in each room.",
+    options={},
+    width=28
 )
 
 help_screen = Display(
-    title="Help Page", 
+    title="Help Page",
     content="Each room you visit will give you a list of inspectable locations within the room that you may click to to search for clues to escape.",
     options={},
-    width=28, 
+    width=28,
 )
 
 inventory_screen = Display(
-    title = "",
-    content = "",
-    options = {},
-    width = 28
+    title="",
+    content="",
+    options={},
+    width=28
 )
 
 introduction_screen = Display(
-    title = "Name select",
-    content = "What is your name?",
-    width = 28,
+    title="Name select",
+    content="What is your name?",
+    width=28,
 )
 kitchen_description = """You wake up, dazed and confused to find that you are in a mysterious, unknown kitchen that hasn't been used in a few years. You see a SINK with a pile of dirty dishes, some CABINETS with most of the cabinet doors barely hanging by the hinges, a TRASH CAN that is in bad need of being taken out, and a door with a square-shaped pad-lock that is locked. To escape, you will need to inspect each of these to find the clue that unlocks the door. What would you like to inspect first?"""
 kitchen_screen = Display(
-    title = "Kitchen",
-    content = kitchen_description,
-    options = {},
-    width = 28,
+    title="Kitchen",
+    content=kitchen_description,
+    options={},
+    width=28,
 )
 
 inspect_screen = Display(
-    title = "Kitchen",
-    content = "What would you like to inspect?",
-    options = {},
-    width = 28
+    title="Kitchen",
+    content="What would you like to inspect?",
+    options={},
+    width=28
 )
 dining_room_description = """You enter the next room which is a run down version of what used to be a nice looking dining room. You see a TABLE with a bunch of clutter on it, some CHAIRS, a busted in CHINA CABINET, and a BAR CART. There is also a door with a lock with a symbol of a circle on it. Find the key for this lock!"""
 dining_room_screen = Display(
-    title = "Dining Room",
-    content = dining_room_description,
-    options = {},
-    width = 28,
+    title="Dining Room",
+    content=dining_room_description,
+    options={},
+    width=28,
 )
 
 dining_room_inspect = Display(
-    title = "Dining Room",
-    content = "What would you like to inspect?",
-    width = 28
+    title="Dining Room",
+    content="What would you like to inspect?",
+    width=28
 )
 
 bedroom_description = """You now enter the bedroom. You notice that there is a broken BED against the far wall, a CLOSET with the doors torn off, a DESK with a mess of papers scattered everywhere and a door with a giant triangle shaped lock. You also notice that the door has been barred off with wooden PLANKS, preventing anyone from accessing the door. This must be the way out!"""
 bedroom_screen = Display(
-    title = "Bedroom",
-    content = bedroom_description,
-    options = {},
-    width = 28,
+    title="Bedroom",
+    content=bedroom_description,
+    options={},
+    width=28,
 )
 bedroom_inspect = Display(
-    title = "Bedroom",
-    content = "What would you like to inspect?",
-    width = 28
+    title="Bedroom",
+    content="What would you like to inspect?",
+    width=28
 )
 escape_description = "Congratulations! You have escaped the house!"
 escape_screen = Display(
-    title = "END GAME",
-    content = escape_description,
-    options = {},
-    width = 28,
+    title="END GAME",
+    content=escape_description,
+    options={},
+    width=28,
 )
 
 inspectable_screen = Display(
-    title = "",
-    content = "",
-    options = {},
-    width = 28,
+    title="",
+    content="",
+    options={},
+    width=28,
 )
 
 
@@ -93,13 +93,21 @@ inspectable_screen = Display(
 Room.drop_table()
 Room.create_table()
 
-kitchen = Room("Kitchen", locked = False, description = kitchen_description, screen =  kitchen_screen)
+kitchen = Room("Kitchen", locked=False,
+               description=kitchen_description, screen=kitchen_screen)
+kitchen.insert_rows()
 
-dining_room = Room("Dining Room", locked = True, description = dining_room_description, screen = dining_room_screen)
+dining_room = Room("Dining Room", locked=True,
+                   description=dining_room_description, screen=dining_room_screen)
+dining_room.insert_rows()
 
-bedroom = Room("Bedroom", locked = True, description = bedroom_description , screen = bedroom_screen)
+bedroom = Room("Bedroom", locked=True,
+               description=bedroom_description, screen=bedroom_screen)
+bedroom.insert_rows()
 
-outside = Room("Outside", locked = True, description = escape_description , screen = escape_screen)
+outside = Room("Outside", locked=True,
+               description=escape_description, screen=escape_screen)
+outside.insert_rows()
 
 ##### Inspectable seeds ######
 Inspectable.drop_table()
@@ -115,7 +123,8 @@ trash_can_description = """You search through the trash can and find a crowbar. 
 trash_can = Inspectable("Trash Can", kitchen, False, trash_can_description)
 
 square_lock_description = """You approch the square shaped lock. Do you want to use your key?"""
-square_lock = Inspectable("Square Lock", kitchen, False, square_lock_description)
+square_lock = Inspectable("Square Lock", kitchen,
+                          False, square_lock_description)
 
 table_description = """You search the table in the middle of the room but do not find any clues."""
 table = Inspectable("Table", dining_room, False, table_description)
@@ -124,13 +133,15 @@ chairs_description = """You look on each chair and do not find any clues or item
 chairs = Inspectable("Chairs", dining_room, False, chairs_description)
 
 china_cabinet_description = """You search through the China cabinet to find nothing more than broken dishes."""
-china_cabinet = Inspectable("China Cabinet", dining_room, False, china_cabinet_description)
+china_cabinet = Inspectable(
+    "China Cabinet", dining_room, False, china_cabinet_description)
 
 bar_cart_description = """You search through the bottles and glassware and find a key inside a decanter. Upon opening the decanter and retrieving the key, you notice that it has a circle symbol on it. This must be for the lock on the door!"""
 bar_cart = Inspectable("Bar Cart", dining_room, False, bar_cart_description)
 
 circle_lock_description = """You approach the door with the circle symbol. Do you want to use the key that you found?"""
-circle_lock = Inspectable("Circle Lock", dining_room, False, circle_lock_description)
+circle_lock = Inspectable("Circle Lock", dining_room,
+                          False, circle_lock_description)
 
 bed_description = """You pull the blankets off the bed but do not find any usefull clues."""
 bed = Inspectable("Bed", bedroom, False, bed_description)
@@ -145,7 +156,8 @@ planks_description = """You run to the door with with the triangle shaped key in
 planks = Inspectable("Planks", bedroom, False, planks_description)
 
 triangle_lock_description = """You finally get through the planks and are now at the triangle shaped lock! Would you like to use the key?"""
-triangle_lock = Inspectable("Triangle Lock", bedroom, False, triangle_lock_description)
+triangle_lock = Inspectable(
+    "Triangle Lock", bedroom, False, triangle_lock_description)
 
 ###### Item seeds ######
 Item.drop_table()
@@ -174,9 +186,7 @@ triangle_lock.unlocker = triangle_key
 ###### Player seed ######
 player = Player("No name", kitchen)
 
-    
+
 # def get_current_location_screen(desired_location):
 #     player.move(desired_location, "You cannot use this door")
 #     get_screen(player.current_location.screen)
-            
-
