@@ -7,9 +7,9 @@ class Inspectable:
 
     def __init__(self, name='', room = None, locked=True, description = ""):
         self.name = name
+        self.description = description
         self.room = room
         self.locked = locked
-        self.description = description
 
     # def add_to_table(self):
     #     sql = f"""
@@ -40,6 +40,16 @@ class Inspectable:
             self._name = name
         else:
             raise Exception("Property Name must be a string")
+        
+    @property
+    def description(self):
+        return self._description
+    @description.setter
+    def description(self, description):
+        if isinstance(description, str):
+            self._description = description
+        else:
+            raise Exception("Property Description must be a string")
 
     @property
     def room(self):
@@ -62,9 +72,9 @@ class Inspectable:
             self._locked = locked
             CURSOR.execute(f"""
                 INSERT INTO
-                inspectable(name, room, locked)
-                VALUES('{self.name}', '{self.grab_foreign_key(self.room)}', '{self.locked}')
-            """)
+                inspectable(name, description, room, locked)
+                VALUES(?, ?, ?, ?)
+            """, (self.name, self.description, self.grab_foreign_key(self.room), self.locked))
             CONN.commit()
         else:
             raise Exception("Property Locked must be a boolean")
@@ -76,6 +86,7 @@ class Inspectable:
             (
             id INTEGER PRIMARY KEY,
             name TEXT,
+            description TEXT,
             room INTEGER, -- Assuming room is a foreign key
             locked BOOLEAN
             );

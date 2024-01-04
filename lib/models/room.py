@@ -20,6 +20,16 @@ class Room:
         """
         CURSOR.execute(sql)
         CONN.commit()
+    
+    def grab_primary_key(self):
+        sql = f"""
+            SELECT id
+            FROM rooms
+            WHERE name = '{self.name}'
+        """
+        CURSOR.execute(sql)
+        primary_key = CURSOR.fetchone()
+        return primary_key[0]
 
     @property
     def name(self):

@@ -1,4 +1,4 @@
-
+from models.room import Room
 class Player:
     def __init__(self, name, current_location):
         self.name = name
@@ -7,7 +7,8 @@ class Player:
 
     
     def move(self, desired_location, error_msg = ""):
-        if desired_location.locked == True:
-            print(error_msg)
-        else: self.current_location = desired_location
+        if isinstance(desired_location, Room):
+            if desired_location.locked == True:
+                print(error_msg)
+            else: self.current_location = desired_location
         return self.current_location

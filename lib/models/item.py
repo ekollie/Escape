@@ -9,8 +9,8 @@ from models.inspectable import Inspectable
 class Item:
     def __init__(self, name = "", inspectable = None, description = ""):
         self.name = name
-        self.inspectable = inspectable
         self.description = description
+        self.inspectable = inspectable
 
     def grab_foreign_key(self, inspectable):
         sql = f"""
@@ -44,9 +44,9 @@ class Item:
             self._inspectable = inspectable
             CURSOR.execute (f"""
                             INSERT INTO
-                            item(name, inspectable)
-                            VALUES('{self.name}', '{self.grab_foreign_key(self.inspectable)}')
-                            """
+                            item(name, description, inspectable)
+                            VALUES(?, ?, ?)
+                            """, (self.name, self.description, self.grab_foreign_key(self.inspectable))
                             )
             CONN.commit()
         else:
@@ -59,6 +59,7 @@ class Item:
             (
             id INTEGER PRIMARY KEY,
             name TEXT,
+            description TEXT,
             inspectable INTEGER -- Assuming inspectable is a foreign key
             );
         """

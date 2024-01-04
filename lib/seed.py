@@ -35,7 +35,7 @@ kitchen_screen = Display(
     width = 28,
 )
 
-kitchen_inspect = Display(
+inspect_screen = Display(
     title = "Kitchen",
     content = "What would you like to inspect?",
     options = {},

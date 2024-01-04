@@ -1,6 +1,7 @@
 import os
 import sys
 from models.display import Display
+from models.connect import CURSOR, CONN
 from seed import *
 
 ####### Game functionality #######
@@ -17,6 +18,31 @@ def get_screen(screen, recurred = False):
 def get_options(screen):
     options = [option for option in screen.options]
     return options
+
+def inspect():
+    inspect_screen.title = player.current_location.name
+    sql = f"""
+        SELECT name, description
+        FROM inspectable
+        WHERE id = '{player.current_location.grab_primary_key()}'
+    """
+    CURSOR.execute(sql)
+    options = []
+    i = 1
+    for inspect in CURSOR.fetchall():
+        handle_inspect = lambda: handle_inspectable(inspect)
+        selection = {f"{i}. {inspect[0]}" : handle_inspect}
+        options.append(selection)
+    inspect_screen.options = options
+    get_screen(inspect_screen)
+
+def handle_inspectable(inspectable):
+    current_player_location = lambda : get_screen(player.current_location.screen)
+    inspect_screen.title = inspectable[0]
+    inspect_screen.content = inspectable[1]
+    inspect_screen.options = {"1. Return" : current_player_location}
+    get_screen(inspect_screen)
+
 ###### Screens ######
 def title_menu():
     title_screen.options = {
@@ -47,25 +73,25 @@ def quit_game():
 
 def kitchen_room():
         kitchen_screen.options = {
-            "1. Inspect" : kitchen_inspect_screen,
+            "1. Inspect" : inspect,
             "2. Dining Room" : enter_dining_room
         }
         get_screen(kitchen_screen, recurred = True)
 
 def enter_bedroom():
         bedroom_screen.options = {
-            "1. Inspect" : title_menu,
+            "1. Inspect" : inspect,
             "2. Escape" : escape,
             }
-        get_screen(bedroom_screen)
+        move_player(bedroom)
 
 def enter_dining_room():
     if dining_room.locked is False:
         dining_room_screen.options = {
-        "1. Inspect" : dining_room_inspect_screen,
+        "1. Inspect" : inspect,
         "2. Bedroom" : enter_bedroom
     }
-        get_screen(dining_room_screen)
+        move_player(dining_room)
 
 def escape():
     escape_screen.options = {
@@ -74,7 +100,7 @@ def escape():
     get_screen(escape_screen)
 
 def kitchen_inspect_screen():
-    get_screen(kitchen_inspect)
+    inspect()
 
 def dining_room_inspect_screen():
     get_screen(dining_room_inspect)
