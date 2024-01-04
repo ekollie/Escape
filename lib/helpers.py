@@ -2,6 +2,7 @@ import os
 import sys
 from models.display import Display
 from models.connect import CURSOR, CONN
+from models.player import Player
 from seed import *
 
 ####### Game functionality #######
@@ -12,11 +13,14 @@ def introduction(recurred=False):
     if recurred:
         print("Please input valid command")
     selection = input("> ")
-    player = Player(selection)
-    inventory_screen.title = player.name
+    global player
+    player = create_player(selection)
     kitchen_room()
-
     introduction(recurred=True)
+    
+def create_player(selection):
+    player = Player(selection, kitchen)
+    return player
 
 def get_screen(screen, recurred=False):
     os.system("clear")
@@ -127,6 +131,7 @@ def move_player(desired_location, recurred=False):
 
 def show_inventory():
     def current_player_location(): return get_screen(player.current_location.screen)
+    inventory_screen.title = player.name
     inventory_screen.options = {"1. Return": current_player_location}
     content = ""
     for item in player.inventory:
@@ -143,19 +148,14 @@ def title_menu():
     }
     get_screen(title_screen)
 
-
-
-
 def help_menu():
     help_screen.options = {
         "1. Return": title_menu
     }
     get_screen(help_screen)
 
-
 def quit_game():
     sys.exit()
-
 
 def kitchen_room():
     kitchen_screen.options = {
@@ -164,7 +164,6 @@ def kitchen_room():
         "3. Dining Room": enter_dining_room
     }
     move_player(kitchen)
-
 
 def enter_bedroom():
     bedroom_screen.options = {
