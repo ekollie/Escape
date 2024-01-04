@@ -75,7 +75,12 @@ escape_screen = Display(
     width = 28,
 )
 
-
+inspectable_screen = Display(
+    title = "",
+    content = "",
+    options = {},
+    width = 28,
+)
 
 
 ##### Room seeds ######

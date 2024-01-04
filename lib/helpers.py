@@ -15,33 +15,43 @@ def get_screen(screen, recurred = False):
             screen.options[option]()
     move_player(screen, recurred = True)
 
+
 def get_options(screen):
     options = [option for option in screen.options]
     return options
 
-def inspect():
+def inspect(recurred = False):
     inspect_screen.title = player.current_location.name
     sql = f"""
         SELECT name, description
         FROM inspectable
-        WHERE id = '{player.current_location.grab_primary_key()}'
+        WHERE room = '{player.current_location.grab_primary_key()}'
     """
     CURSOR.execute(sql)
-    options = []
+    inspectables = CURSOR.fetchall()
     i = 1
-    for inspect in CURSOR.fetchall():
-        handle_inspect = lambda: handle_inspectable(inspect)
-        selection = {f"{i}. {inspect[0]}" : handle_inspect}
-        options.append(selection)
+    options = []
+    for inspectable in inspectables:
+        choice = f"{i}. {inspectable[0]}"
+        options.append(choice)
+        i += 1
     inspect_screen.options = options
-    get_screen(inspect_screen)
+    os.system("clear")
+    inspect_screen.print_screen()
+    selection = input("> ")
+    if recurred: print("Please input valid command")
+    for option in options:
+        if selection.lower() in option.lower():
+            for inspectable in inspectables:
+                if option.split()[1] in inspectable[0]:
+                    handle_inspectable(inspectable)
 
 def handle_inspectable(inspectable):
     current_player_location = lambda : get_screen(player.current_location.screen)
-    inspect_screen.title = inspectable[0]
-    inspect_screen.content = inspectable[1]
-    inspect_screen.options = {"1. Return" : current_player_location}
-    get_screen(inspect_screen)
+    inspectable_screen.title = f"{inspectable[0]}"
+    inspectable_screen.content = f"{inspectable[1]}"
+    inspectable_screen.options = {"1. Return" : current_player_location}
+    get_screen(inspectable_screen)
 
 ###### Screens ######
 def title_menu():
