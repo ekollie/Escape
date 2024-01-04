@@ -182,6 +182,3 @@ triangle_key_description = """A key with a triangle shaped end that fits to a sp
 triangle_key = Item("Triangle Key", desk, triangle_key_description, None)
 triangle_lock.unlocker = triangle_key
 
-
-###### Player seed ######
-player = Player("No name", kitchen)

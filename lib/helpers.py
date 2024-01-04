@@ -6,6 +6,17 @@ from seed import *
 
 ####### Game functionality #######
 
+def introduction(recurred=False):
+    os.system("clear")
+    introduction_screen.print_screen()
+    if recurred:
+        print("Please input valid command")
+    selection = input("> ")
+    player = Player(selection)
+    inventory_screen.title = player.name
+    kitchen_room()
+
+    introduction(recurred=True)
 
 def get_screen(screen, recurred=False):
     os.system("clear")
@@ -133,17 +144,6 @@ def title_menu():
     get_screen(title_screen)
 
 
-def introduction(recurred=False):
-    os.system("clear")
-    introduction_screen.print_screen()
-    if recurred:
-        print("Please input valid command")
-    selection = input("> ")
-    player.name = selection
-    inventory_screen.title = player.name
-    kitchen_room()
-
-    introduction(recurred=True)
 
 
 def help_menu():

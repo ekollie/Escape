@@ -5,7 +5,6 @@ class Player:
         self.current_location = current_location
         self.inventory = []
 
-    
     def move(self, desired_location, error_msg = ""):
         if isinstance(desired_location, Room):
             if desired_location.locked == True:
