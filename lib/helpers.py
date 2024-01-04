@@ -68,12 +68,20 @@ def handle_inspectable(inspectable):
 
 def take_item(inspectable):
     item = [item for item in Item.all if item.inspectable.name == inspectable][0]
-    player.add_to_inventory(item)
     sql = f"""
-        DELETE FROM item WHERE name = '{item.name}'
+        SELECT name
+        FROM item
+        WHERE name = '{item.name}'
     """
     CURSOR.execute(sql)
-    CONN.commit()
+    item_record = CURSOR.fetchone()[0]
+    if(item_record):
+        player.add_to_inventory(item)
+        sql = f"""
+            DELETE FROM item WHERE name = '{item.name}'
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
 
 
 def use_item(inspectable):
@@ -92,7 +100,7 @@ def use_item(inspectable):
             player.inventory = [
                 item_object for item_object in player.inventory if item_object != item]
             CURSOR.execute(f"""
-                INSERT INTO item
+                INSERT INTO
                 item(name, description, inspectable)
                 VALUES(?, ?, ?)
             """, (item.name, item.description, inspectable_object.grab_primary_key()))

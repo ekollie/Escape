@@ -185,8 +185,3 @@ triangle_lock.unlocker = triangle_key
 
 ###### Player seed ######
 player = Player("No name", kitchen)
-
-
-# def get_current_location_screen(desired_location):
-#     player.move(desired_location, "You cannot use this door")
-#     get_screen(player.current_location.screen)

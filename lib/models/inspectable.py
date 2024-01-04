@@ -33,6 +33,16 @@ class Inspectable:
         self.room_key
         return self.room_key[0]
 
+    def grab_primary_key(self):
+        sql = f"""
+            SELECT id
+            FROM inspectable
+            WHERE name = '{self.name}'
+        """
+        CURSOR.execute(sql)
+        primary_key = CURSOR.fetchone()
+        return primary_key[0]
+
     @property
     def name(self):
         return self._name
