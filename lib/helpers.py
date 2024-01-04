@@ -68,6 +68,9 @@ def enter_dining_room():
         get_screen(dining_room_screen)
 
 def escape():
+    escape_screen.options = {
+        "1. Return" : title_menu
+    }
     get_screen(escape_screen)
 
 def kitchen_inspect_screen():
