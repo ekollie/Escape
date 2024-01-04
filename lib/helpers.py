@@ -49,15 +49,32 @@ def inspect(recurred = False):
 def handle_inspectable(inspectable):
     current_player_location = lambda : get_screen(player.current_location.screen)
     add_item = lambda: take_item(inspectable[0])
+    use_up_item = lambda : use_item(inspectable[0])
     inspectable_screen.title = f"{inspectable[0]}"
     inspectable_screen.content = f"{inspectable[1]}"
-    inspectable_screen.options = {"1. Return" : current_player_location, "2. Take Item" : add_item}
+    inspectable_screen.options = {
+        "1. Return" : current_player_location, 
+        "2. Take Item" : add_item,
+        "3. Use Item" : use_up_item
+        }
     get_screen(inspectable_screen)
     
 def take_item(inspectable):
-    item = [item.name for item in Item.all if item.inspectable.name == inspectable][0]
+    item = [item for item in Item.all if item.inspectable.name == inspectable][0]
     player.add_to_inventory(item)
+    # Delete item from table
 
+def use_item(inspectable):
+    inspectable_object = [inspectable_element for inspectable_element in Inspectable.all if inspectable_element.name == inspectable][0]
+    for item in player.inventory:
+        if inspectable_object.unlocker == item:
+            item.keyhole.locked = False
+            # Update DB
+        
+
+def move_player(desired_location, recurred = False):
+    player.move(desired_location, "You cannot use this door")
+    get_screen(player.current_location.screen, recurred)
 
 ###### Screens ######
 def show_inventory():
@@ -65,7 +82,7 @@ def show_inventory():
     inventory_screen.options = {"1. Return" : current_player_location}
     content = ""
     for item in player.inventory:
-        content += f"{item}\n"
+        content += f"{ item.name}\n"
     inventory_screen.content = content
     get_screen(inventory_screen)
 
@@ -99,25 +116,28 @@ def quit_game():
 
 def kitchen_room():
         kitchen_screen.options = {
-            "1. Inspect" : inspect,
-            "2. Dining Room" : enter_dining_room
+            "1. Inventory" : show_inventory,
+            "2. Inspect" : inspect,
+            "3. Dining Room" : enter_dining_room
         }
-        get_screen(kitchen_screen, recurred = True)
+        move_player(kitchen)
 
 def enter_bedroom():
         bedroom_screen.options = {
-            "1. Inspect" : inspect,
-            "2. Escape" : escape,
+            "1. Inventory" : show_inventory,
+            "2. Inspect" : inspect,
+            "3. Dining Room": enter_dining_room, 
+            "4. Escape" : escape,
             }
         move_player(bedroom)
 
 def enter_dining_room():
     if dining_room.locked is False:
         dining_room_screen.options = {
-        "1. Inspect" : inspect,
-        "2. Bedroom" : enter_bedroom,
-        "3. Kitchen" : kitchen_room,
-        "4. Inventory" : show_inventory
+        "1. Inventory" : show_inventory,
+        "2. Inspect" : inspect,
+        "3. Bedroom" : enter_bedroom,
+        "4. Kitchen" : kitchen_room,
     }
         move_player(dining_room)
 
@@ -125,17 +145,4 @@ def escape():
     escape_screen.options = {
         "1. Return" : title_menu
     }
-    get_screen(escape_screen)
-
-def kitchen_inspect_screen():
-    inspect()
-
-def dining_room_inspect_screen():
-    get_screen(dining_room_inspect)
-
-def bedroom_inspect_screen():
-    get_screen(bedroom_inspect)
-
-def move_player(desired_location, recurred = False):
-    player.move(desired_location, "You cannot use this door")
-    get_screen(player.current_location.screen, recurred)
+    move_player(outside)

@@ -8,10 +8,11 @@ from models.inspectable import Inspectable
 
 class Item:
     all = []
-    def __init__(self, name = "", inspectable = None, description = ""):
+    def __init__(self, name = "", inspectable = None, description = "", keyhole = None):
         self.name = name
         self.description = description
         self.inspectable = inspectable
+        self.keyhole = keyhole
         Item.all.append(self)
 
     def grab_foreign_key(self, inspectable):

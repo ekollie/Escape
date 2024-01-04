@@ -4,12 +4,15 @@ from models.connect import CONN, CURSOR
 from models.room import Room
 
 class Inspectable:
+    all = []
 
-    def __init__(self, name='', room = None, locked=True, description = ""):
+    def __init__(self, name='', room = None, locked=True, description = "", unlocker = None):
         self.name = name
         self.description = description
         self.room = room
         self.locked = locked
+        self.unlocker = unlocker
+        Inspectable.all.append(self)
 
     # def add_to_table(self):
     #     sql = f"""

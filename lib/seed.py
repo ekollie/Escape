@@ -73,10 +73,10 @@ bedroom_inspect = Display(
     content = "What would you like to inspect?",
     width = 28
 )
-
+escape_description = "Congratulations! You have escaped the house!"
 escape_screen = Display(
     title = "END GAME",
-    content = "Congratulations! You have escaped the house!",
+    content = escape_description,
     options = {},
     width = 28,
 )
@@ -94,18 +94,12 @@ Room.drop_table()
 Room.create_table()
 
 kitchen = Room("Kitchen", locked = False, description = kitchen_description, screen =  kitchen_screen)
-# kitchen.add_to_table()
 
+dining_room = Room("Dining Room", locked = True, description = dining_room_description, screen = dining_room_screen)
 
-dining_room = Room("Dining Room", locked = False, description = dining_room_description, screen = dining_room_screen)
+bedroom = Room("Bedroom", locked = True, description = bedroom_description , screen = bedroom_screen)
 
-
-bedroom = Room("Bedroom", locked = False, description = bedroom_description , screen = bedroom_screen)
-# bedroom.add_to_table()
-
-
-###### Display seeds + helper functions ######
-
+outside = Room("Outside", locked = True, description = escape_description , screen = escape_screen)
 
 ##### Inspectable seeds ######
 Inspectable.drop_table()
@@ -158,19 +152,24 @@ Item.drop_table()
 Item.create_table()
 
 square_key_description = """A key with a square shaped end that fits to a specific lock."""
-square_key = Item("Square Key", sink, square_key_description)
+square_key = Item("Square Key", sink, square_key_description, dining_room)
+square_lock.unlocker = square_key
 
 crowbar_description = """A crowbar used for prying."""
-crowbar = Item("Crowbar", trash_can, crowbar_description)
+crowbar = Item("Crowbar", trash_can, crowbar_description, planks)
+planks.unlocker = crowbar
 
 circle_key_description = """A key with a circle shaped end that fits to a specific lock."""
-circle_key = Item("Circle Key", bar_cart, circle_key_description)
+circle_key = Item("Circle Key", bar_cart, circle_key_description, bedroom)
+circle_lock.unlocker = circle_key
 
 baseball_bat_description = """A baseball bat used for hitting."""
 baseball_bat = Item("Baseball Bat", closet, baseball_bat_description)
 
 triangle_key_description = """A key with a triangle shaped end that fits to a specific lock."""
-triangle_key = Item("Triangle Key", desk, triangle_key_description)
+triangle_key = Item("Triangle Key", desk, triangle_key_description, None)
+triangle_lock.unlocker = triangle_key
+
 
 ###### Player seed ######
 player = Player("No name", kitchen)

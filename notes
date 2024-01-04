@@ -1,12 +1,15 @@
 What we need:
-Inventory for player
+
 inspect
 CRUD
     Brainstorm ideas to satisfy CRUD
 
+Create = use_item()
+Reading = inspect()
+Updating = use_item()
+Delete = take_item()
 
 
 
 
 
-finish blogs! (not alex)
