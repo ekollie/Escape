@@ -3,6 +3,7 @@ import sys
 from models.display import Display
 from models.connect import CURSOR, CONN
 from models.player import Player
+from models.art import *
 from seed import *
 
 ####### Game functionality #######
@@ -19,7 +20,7 @@ def introduction(recurred=False):
     introduction(recurred=True)
     
 def create_player(selection):
-    player = Player(selection, kitchen)
+    player = Player(selection, kitchen, inventory = [square_key, circle_key, crowbar])
     return player
 
 def get_screen(screen, recurred=False):
@@ -41,6 +42,8 @@ def get_options(screen):
 
 def inspect(recurred=False):
     inspect_screen.title = player.current_location.name
+    inspect_screen.art = player.current_location.screen.art
+    inspect_screen.width = player.current_location.screen.width
     sql = f"""
         SELECT name, description
         FROM inspectable
@@ -127,7 +130,6 @@ def move_player(desired_location, recurred=False):
     get_screen(player.current_location.screen, recurred)
 
 ###### Screens ######
-
 
 def show_inventory():
     def current_player_location(): return get_screen(player.current_location.screen)

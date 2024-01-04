@@ -1,7 +1,7 @@
-
+from models.art import *
 
 class Display:
-    def __init__(self, border_head="+", border_body="-", title="", content="", options={}, width=0, alt_border_head="|", alt_border_body = "="):
+    def __init__(self, border_head="+", border_body="-", title="", content="", options={}, width=0, alt_border_head="|", alt_border_body = "=", art=""):
         self.title = title
         self.border_head = border_head
         self.border_body = border_body
@@ -10,6 +10,7 @@ class Display:
         self.content = content
         self.options = options 
         self.width = width
+        self.art = art
 
         self.border_segment = (f"{self.border_head}{self.border_body * self.width}{self.border_head}")
         self.border =  (f"{self.border_segment}{self.border_segment}")
@@ -102,7 +103,9 @@ class Display:
         print(self.alt_border)
         white_spaced_title = f"*{' ' * int((len(self.border) - len(self.title)) / 2 )}{self.title}{' ' * int((len(self.border) - len(self.title)) / 2 - 1)}*"
         print(white_spaced_title)
+        print(self.art)
         print(f"{self.alt_border}\n")
+
         word_list = self.content.split(' ')
         content = []
         content_line = (" ".join(content))

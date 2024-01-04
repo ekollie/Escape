@@ -5,6 +5,7 @@ from models.display import Display
 from models.inspectable import Inspectable
 from models.item import Item
 from models.player import Player
+from models.art import *
 
 
 title_screen = Display(
@@ -38,7 +39,8 @@ kitchen_screen = Display(
     title="Kitchen",
     content=kitchen_description,
     options={},
-    width=28,
+    width=34,
+    art = ascii_kitchen
 )
 
 inspect_screen = Display(
@@ -52,7 +54,8 @@ dining_room_screen = Display(
     title="Dining Room",
     content=dining_room_description,
     options={},
-    width=28,
+    width=22,
+    art = ascii_dining_room
 )
 
 dining_room_inspect = Display(
@@ -66,7 +69,8 @@ bedroom_screen = Display(
     title="Bedroom",
     content=bedroom_description,
     options={},
-    width=28,
+    width=26,
+    art = ascii_bedroom
 )
 bedroom_inspect = Display(
     title="Bedroom",
@@ -78,7 +82,8 @@ escape_screen = Display(
     title="END GAME",
     content=escape_description,
     options={},
-    width=28,
+    width=30,
+    art = ascii_fireworks
 )
 
 inspectable_screen = Display(
@@ -155,9 +160,9 @@ desk = Inspectable("Desk", bedroom, False, desk_description)
 planks_description = """You run to the door with with the triangle shaped key in excitment about getting out but you remember you need to get through the planks. What do you use to get through these?"""
 planks = Inspectable("Planks", bedroom, False, planks_description)
 
-triangle_lock_description = """You finally get through the planks and are now at the triangle shaped lock! Would you like to use the key?"""
-triangle_lock = Inspectable(
-    "Triangle Lock", bedroom, False, triangle_lock_description)
+# triangle_lock_description = """You finally get through the planks and are now at the triangle shaped lock! Would you like to use the key?"""
+# triangle_lock = Inspectable(
+#     "Triangle Lock", bedroom, False, triangle_lock_description)
 
 ###### Item seeds ######
 Item.drop_table()
@@ -168,7 +173,7 @@ square_key = Item("Square Key", sink, square_key_description, dining_room)
 square_lock.unlocker = square_key
 
 crowbar_description = """A crowbar used for prying."""
-crowbar = Item("Crowbar", trash_can, crowbar_description, planks)
+crowbar = Item("Crowbar", trash_can, crowbar_description, outside)
 planks.unlocker = crowbar
 
 circle_key_description = """A key with a circle shaped end that fits to a specific lock."""
@@ -178,7 +183,7 @@ circle_lock.unlocker = circle_key
 baseball_bat_description = """A baseball bat used for hitting."""
 baseball_bat = Item("Baseball Bat", closet, baseball_bat_description)
 
-triangle_key_description = """A key with a triangle shaped end that fits to a specific lock."""
-triangle_key = Item("Triangle Key", desk, triangle_key_description, None)
-triangle_lock.unlocker = triangle_key
+# triangle_key_description = """A key with a triangle shaped end that fits to a specific lock."""
+# triangle_key = Item("Triangle Key", desk, triangle_key_description, None)
+# triangle_lock.unlocker = triangle_key
 

@@ -1,9 +1,9 @@
 from models.room import Room
 class Player:
-    def __init__(self, name, current_location):
+    def __init__(self, name, current_location, inventory = []):
         self.name = name
         self.current_location = current_location
-        self.inventory = []
+        self.inventory = inventory
 
     def move(self, desired_location, error_msg = ""):
         if isinstance(desired_location, Room):
