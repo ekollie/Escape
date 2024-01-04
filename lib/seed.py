@@ -27,7 +27,7 @@ introduction_screen = Display(
     content = "What is your name?",
     width = 28,
 )
-kitchen_description = """ You wake up, dazed and confused to find that you are in a mysterious, unknown kitchen that hasn't been used in a few years. You see a SINK with a pile of dirty dishes, some CABINETS with most of the cabinet doors barely hanging by the hinges, a TRASH CAN that is in bad need of being taken out, and a door with a square-shaped pad-lock that is locked. To escape, you will need to inspect each of these to find the clue that unlocks the door. What would you like to inspect first?"""
+kitchen_description = """You wake up, dazed and confused to find that you are in a mysterious, unknown kitchen that hasn't been used in a few years. You see a SINK with a pile of dirty dishes, some CABINETS with most of the cabinet doors barely hanging by the hinges, a TRASH CAN that is in bad need of being taken out, and a door with a square-shaped pad-lock that is locked. To escape, you will need to inspect each of these to find the clue that unlocks the door. What would you like to inspect first?"""
 kitchen_screen = Display(
     title = "Kitchen",
     content = kitchen_description,
@@ -41,7 +41,7 @@ inspect_screen = Display(
     options = {},
     width = 28
 )
-dining_room_description = """ You enter the next room which is a run down version of what used to be a nice looking dining room. You see a TABLE with a bunch of clutter on it, some CHAIRS, a busted in CHINA CABINET, and a BAR CART. There is also a door with a lock with a symbol of a circle on it. Find the key for this lock!"""
+dining_room_description = """You enter the next room which is a run down version of what used to be a nice looking dining room. You see a TABLE with a bunch of clutter on it, some CHAIRS, a busted in CHINA CABINET, and a BAR CART. There is also a door with a lock with a symbol of a circle on it. Find the key for this lock!"""
 dining_room_screen = Display(
     title = "Dining Room",
     content = dining_room_description,
@@ -100,7 +100,7 @@ bedroom = Room("Bedroom", locked = False, description = bedroom_description , sc
 Inspectable.drop_table()
 Inspectable.create_table()
 
-sink_description = """ You look inside the sink and find a key with a square shaped end."""
+sink_description = """You look inside the sink and find a key with a square shaped end."""
 sink = Inspectable("Sink", kitchen, False, sink_description)
 
 cabinet_description = """You check the cabinets but you don't find any clues or items that will help you unlock the door."""
@@ -146,8 +146,20 @@ triangle_lock = Inspectable("Triangle Lock", bedroom, False, triangle_lock_descr
 Item.drop_table()
 Item.create_table()
 
-square_key_description = """You have a key with a square shaped end that fits to a specific lock"""
+square_key_description = """A key with a square shaped end that fits to a specific lock."""
 square_key = Item("Square Key", sink, square_key_description)
+
+crowbar_description = """A crowbar used for prying."""
+crowbar = Item("Crowbar", trash_can, crowbar_description)
+
+circle_key_description = """A key with a circle shaped end that fits to a specific lock."""
+circle_key = Item("Circle Key", bar_cart, circle_key_description)
+
+baseball_bat_description = """A baseball bat used for hitting."""
+baseball_bat = Item("Baseball Bat", closet, baseball_bat_description)
+
+triangle_key_description = """A key with a triangle shaped end that fits to a specific lock."""
+triangle_key = Item("Triangle Key", desk, triangle_key_description)
 
 ###### Player seed ######
 player = Player("No name", kitchen)
