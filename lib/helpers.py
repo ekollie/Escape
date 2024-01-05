@@ -20,7 +20,7 @@ def introduction(recurred=False):
     introduction(recurred=True)
     
 def create_player(selection):
-    player = Player(selection, kitchen, inventory = [square_key, circle_key, crowbar])
+    player = Player(selection, kitchen, inventory = [])
     return player
 
 def get_screen(screen, recurred=False):
@@ -76,6 +76,7 @@ def handle_inspectable(inspectable):
     def use_up_item(): return use_item(inspectable[0])
     inspectable_screen.title = f"{inspectable[0]}"
     inspectable_screen.content = f"{inspectable[1]}"
+    inspectable_screen.art = [inspectable_object.art for inspectable_object in Inspectable.all if inspectable_object.name == inspectable[0]][0]
     inspectable_screen.options = {
         "1. Return": current_player_location,
         "2. Take Item": add_item,
@@ -87,13 +88,14 @@ def handle_inspectable(inspectable):
 def take_item(inspectable):
     item = [item for item in Item.all if item.inspectable.name == inspectable]
     if len(item) > 0 :
+        item = item[0]
         sql = f"""
                 SELECT name
             FROM item
-            WHERE name = '{item[0].name}'
+            WHERE name = '{item.name}'
         """
         CURSOR.execute(sql)
-        item_record = CURSOR.fetchone()[0]
+        item_record = CURSOR.fetchone()
         if(item_record):
             player.add_to_inventory(item)
             sql = f"""

@@ -115,7 +115,7 @@ Inspectable.drop_table()
 Inspectable.create_table()
 
 sink_description = """You look inside the sink and find a key with a square shaped end."""
-sink = Inspectable("Sink", kitchen, False, sink_description)
+sink = Inspectable("Sink", kitchen, False, sink_description, art = ascii_sink)
 
 cabinet_description = """You check the cabinets but you don't find any clues or items that will help you unlock the door."""
 cabinet = Inspectable("Cabinet", kitchen, False, cabinet_description)

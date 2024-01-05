@@ -6,12 +6,13 @@ from models.room import Room
 class Inspectable:
     all = []
 
-    def __init__(self, name='', room = None, locked=True, description = "", unlocker = None):
+    def __init__(self, name='', room = None, locked=True, description = "", unlocker = None, art = ""):
         self.name = name
         self.description = description
         self.room = room
         self.locked = locked
         self.unlocker = unlocker
+        self.art = art
         Inspectable.all.append(self)
 
     # def add_to_table(self):
