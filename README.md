@@ -46,3 +46,7 @@ Deleting items from inventory
 ## Gameplay design
 
 ![GameplayLoop](</Screenshot (8).png>)
+
+## Kanban
+
+![Kanban](</Screenshot (9).png>)
