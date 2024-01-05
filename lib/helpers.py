@@ -100,8 +100,6 @@ def handle_inspectable(inspectable, recurred = False, message = ""):  # handles 
             inspectable_screen.options[option]()
     handle_inspectable(inspectable, recurred=True)
 
-
-
 def take_item(inspectable): # takes item from an inspectable object
     item = [item for item in Item.all if item.inspectable.name == inspectable[0]]
     if len(item) > 0 :

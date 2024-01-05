@@ -5,11 +5,10 @@ class Player:
         self.current_location = current_location
         self.inventory = inventory
 
-    def move(self, desired_location, error_msg = ""):
+    def move(self, desired_location):
         if isinstance(desired_location, Room):
-            if desired_location.locked == True:
-                print(error_msg)
-            else: self.current_location = desired_location
+            if desired_location.locked == False:
+                self.current_location = desired_location
         return self.current_location
     
     def add_to_inventory(self, item):

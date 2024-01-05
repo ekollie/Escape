@@ -82,9 +82,9 @@ class Inspectable:
             # Insert the Inspectable instance into the database when 'locked' property is set
             CURSOR.execute("""
                 INSERT INTO
-                inspectable(name, description, room, locked)
-                VALUES(?, ?, ?, ?)
-            """, (self.name, self.description, self.grab_foreign_key(self.room), self.locked))
+                inspectable(name, description, room)
+                VALUES(?, ?, ?)
+            """, (self.name, self.description, self.grab_foreign_key(self.room)))
             CONN.commit()
         else:
             raise Exception("Property Locked must be a boolean")
