@@ -141,7 +141,7 @@ closet = Inspectable("Closet", bedroom, False, closet_description, art = ascii_d
 desk_description = """You search through the papers on the desk but don't find anything you can use."""
 desk = Inspectable("Desk", bedroom, False, desk_description, art = ascii_desk)
 
-planks_description = """You run to the door with with the triangle shaped key in excitment about getting out but you remember you need to get through the planks. What do you use to get through these?"""
+planks_description = """The door is barred up with wooden planks. These need to be removed to escape. How do you remove them?"""
 planks = Inspectable("Planks", bedroom, False, planks_description, art = ascii_boarded_door)
 
 
