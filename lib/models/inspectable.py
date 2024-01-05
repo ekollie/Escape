@@ -1,5 +1,3 @@
-# Database
-# Take room primary key as foreign key
 from models.connect import CONN, CURSOR
 from models.room import Room
 
@@ -14,15 +12,6 @@ class Inspectable:
         self.unlocker = unlocker
         self.art = art
         Inspectable.all.append(self)
-
-    # def add_to_table(self):
-    #     sql = f"""
-    #         INSERT INTO
-    #         inspectables(name, room, locked)
-    #         VALUES('{self.name}', '{self.room}', '{self.locked}')
-    #     """
-    #     CURSOR.execute(sql)
-    #     CONN.commit()
 
     def grab_foreign_key(self, room):
         sql = f"""

@@ -78,16 +78,6 @@ class Display:
             self._content = content
     
     @property
-    def options (self):
-        return self._options
-    @options.setter
-    def options(self, options):
-        # if not isinstance(options, list):
-        #     raise Exception("options must be a list")
-        # else:
-            self._options = options
-    
-    @property
     def width (self):
         return self._width
     @width.setter

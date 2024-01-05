@@ -1,12 +1,13 @@
 import os
 import sys
-from models.display import Display
 from models.connect import CURSOR, CONN
 from models.player import Player
 from models.art import *
 from seed import *
 
-####### Game functionality #######
+####### Game interaction #######
+def start_game():
+    title_menu()
 
 def introduction(recurred=False):
     os.system("clear")
@@ -132,7 +133,7 @@ def move_player(desired_location, recurred=False):
     player.move(desired_location, "You cannot use this door")
     get_screen(player.current_location.screen, recurred)
 
-###### Screens ######
+###### Game functionality ######
 
 def show_inventory():
     def current_player_location(): return get_screen(player.current_location.screen)
@@ -140,7 +141,7 @@ def show_inventory():
     inventory_screen.options = {"1. Return": current_player_location}
     content = ""
     for item in player.inventory:
-        content += f"{ item.name}\n"
+        content += f" {item.name}: {item.description}\n"
     inventory_screen.content = content
     get_screen(inventory_screen)
 
