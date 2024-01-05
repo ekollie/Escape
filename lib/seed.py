@@ -98,20 +98,16 @@ inspectable_screen = Display(
 Room.drop_table()
 Room.create_table()
 
-kitchen = Room("Kitchen", locked=False,
-               description=kitchen_description, screen=kitchen_screen)
+kitchen = Room("Kitchen", locked=False, description=kitchen_description, screen=kitchen_screen)
 kitchen.insert_rows()
 
-dining_room = Room("Dining Room", locked=True,
-                   description=dining_room_description, screen=dining_room_screen)
+dining_room = Room("Dining Room", locked=True, description=dining_room_description, screen=dining_room_screen)
 dining_room.insert_rows()
 
-bedroom = Room("Bedroom", locked=True,
-               description=bedroom_description, screen=bedroom_screen)
+bedroom = Room("Bedroom", locked=True, description=bedroom_description, screen=bedroom_screen)
 bedroom.insert_rows()
 
-outside = Room("Outside", locked=True,
-               description=escape_description, screen=escape_screen)
+outside = Room("Outside", locked=True, description=escape_description, screen=escape_screen)
 outside.insert_rows()
 
 ##### Inspectable seeds ######
@@ -128,8 +124,7 @@ trash_can_description = """You search through the trash can and find a crowbar. 
 trash_can = Inspectable("Trash Can", kitchen, False, trash_can_description)
 
 square_lock_description = """You approch the square shaped lock. Do you want to use your key?"""
-square_lock = Inspectable("Square Lock", kitchen,
-                          False, square_lock_description)
+square_lock = Inspectable("Square Lock", kitchen, False, square_lock_description)
 
 table_description = """You search the table in the middle of the room but do not find any clues."""
 table = Inspectable("Table", dining_room, False, table_description)
@@ -145,8 +140,7 @@ bar_cart_description = """You search through the bottles and glassware and find 
 bar_cart = Inspectable("Bar Cart", dining_room, False, bar_cart_description)
 
 circle_lock_description = """You approach the door with the circle symbol. Do you want to use the key that you found?"""
-circle_lock = Inspectable("Circle Lock", dining_room,
-                          False, circle_lock_description)
+circle_lock = Inspectable("Circle Lock", dining_room, False, circle_lock_description)
 
 bed_description = """You pull the blankets off the bed but do not find any usefull clues."""
 bed = Inspectable("Bed", bedroom, False, bed_description)
