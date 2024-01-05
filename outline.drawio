@@ -1,11 +1,11 @@
 <mxfile host="65bd71144e">
     <diagram id="241x69rcG6a86sxX_imD" name="Page-1">
-        <mxGraphModel dx="1663" dy="1492" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="3762" dy="2016" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="84" value="Bedroom" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-730" y="-645" width="360" height="360" as="geometry"/>
+                    <mxGeometry x="-780" y="-890" width="360" height="360" as="geometry"/>
                 </mxCell>
                 <mxCell id="7" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="5" target="6" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -154,86 +154,86 @@
                     <mxGeometry x="-660" y="630" width="180" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="76" value="Dining Room" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-270" y="-645" width="360" height="360" as="geometry"/>
+                    <mxGeometry x="-320" y="-890" width="360" height="360" as="geometry"/>
                 </mxCell>
                 <mxCell id="77" value="Chairs" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-80" y="-635" width="120" height="120" as="geometry"/>
+                    <mxGeometry x="-130" y="-880" width="120" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="78" value="Table" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-250" y="-635" width="100" height="100" as="geometry"/>
+                    <mxGeometry x="-300" y="-880" width="100" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="79" value="China Cabinet" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-25" y="-505" width="100" height="100" as="geometry"/>
+                    <mxGeometry x="-75" y="-750" width="100" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="80" value="Bar cart" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-60" y="-395" width="110" height="110" as="geometry"/>
+                    <mxGeometry x="-110" y="-640" width="110" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="81" value="Circle lock&lt;br&gt;(Unlocks Bedroom)" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-265" y="-450" width="130" height="130" as="geometry"/>
+                    <mxGeometry x="-315" y="-695" width="130" height="130" as="geometry"/>
                 </mxCell>
                 <mxCell id="83" style="edgeStyle=none;html=1;" edge="1" parent="1" source="82" target="81">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="82" value="Circle key" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="-20" y="-325" width="40" height="30" as="geometry"/>
+                    <mxGeometry x="-70" y="-570" width="40" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="85" value="Closet" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-540" y="-635" width="120" height="120" as="geometry"/>
+                    <mxGeometry x="-590" y="-880" width="120" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="86" value="Bed" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-710" y="-635" width="100" height="100" as="geometry"/>
+                    <mxGeometry x="-760" y="-880" width="100" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="87" value="Desk" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-485" y="-505" width="100" height="100" as="geometry"/>
+                    <mxGeometry x="-535" y="-750" width="100" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="89" value="Triangle Lock&lt;br&gt;Created when planks are deleted&lt;br&gt;(To exit(wins game))" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-600" y="-425" width="130" height="130" as="geometry"/>
+                    <mxGeometry x="-650" y="-670" width="130" height="130" as="geometry"/>
                 </mxCell>
                 <mxCell id="92" value="Baseball bat" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="-510" y="-555" width="60" height="30" as="geometry"/>
+                    <mxGeometry x="-560" y="-800" width="60" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="101" style="edgeStyle=none;html=1;" edge="1" parent="1" source="93" target="89">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="93" value="Triangle key" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="-460" y="-445" width="50" height="30" as="geometry"/>
+                    <mxGeometry x="-510" y="-690" width="50" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="94" value="Planks&lt;br&gt;deleted when solved" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-620" y="-545" width="70" height="70" as="geometry"/>
+                    <mxGeometry x="-670" y="-790" width="70" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="68" value="Kitchen" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-520" y="-240" width="420" height="420" as="geometry"/>
+                    <mxGeometry x="-570" y="-485" width="420" height="420" as="geometry"/>
                 </mxCell>
                 <mxCell id="67" value="Sink" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-495" y="-100" width="140" height="140" as="geometry"/>
+                    <mxGeometry x="-545" y="-345" width="140" height="140" as="geometry"/>
                 </mxCell>
                 <mxCell id="103" style="edgeStyle=none;html=1;" edge="1" parent="1" source="66" target="102">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="66" value="Square Key" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="-460" y="-10" width="60" height="40" as="geometry"/>
+                    <mxGeometry x="-510" y="-255" width="60" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="72" value="Trash Can" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-410" y="-230" width="160" height="160" as="geometry"/>
+                    <mxGeometry x="-460" y="-475" width="160" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="73" value="Cabinet" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-410" y="30" width="150" height="150" as="geometry"/>
+                    <mxGeometry x="-460" y="-215" width="150" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="75" value="Crowbar" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="-370" y="-135" width="65" height="40" as="geometry"/>
+                    <mxGeometry x="-420" y="-380" width="65" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="96" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="75" target="94">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="-670" y="-270" as="targetPoint"/>
+                        <mxPoint x="-720" y="-515" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="102" value="Square Lock/&lt;br&gt;Unlocks dining room" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="-245" y="-182.5" width="135" height="135" as="geometry"/>
+                    <mxGeometry x="-295" y="-427.5" width="135" height="135" as="geometry"/>
                 </mxCell>
                 <mxCell id="104" value="&lt;h1&gt;Map&lt;/h1&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="-290" y="-790" width="60" height="40" as="geometry"/>
+                    <mxGeometry x="-400" y="-960" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="105" value="seed display, player,&lt;br&gt;rooms,&lt;br&gt;items,&lt;br&gt;inspectables&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="105" value="seed display, player,&lt;br&gt;rooms,&lt;br&gt;items,&lt;br&gt;inspectables&lt;br&gt;MUST NOT BE DEFINED WITH FUNCTIONS&lt;br&gt;&lt;br&gt;CREATE HELPER FUNCTIONS TO ADD TO OBJECTS&lt;br&gt;&lt;br&gt;functions MUST NOT be defined with&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="-680" y="1650" width="170" height="150" as="geometry"/>
                 </mxCell>
             </root>

@@ -33,7 +33,16 @@ Deleting items from inventory
 
 # Classes
 
-## Locations
-## Player
-## Display
-## Item
+- Locations
+- Player
+- Display
+- Item
+- Game map
+
+## Item map
+
+![Game Map](</Screenshot (7).png>)
+
+## Gameplay design
+
+![GameplayLoop](</Screenshot (8).png>)
