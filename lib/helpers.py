@@ -9,31 +9,31 @@ from seed import *
 def start_game():
     title_menu()
 
-def introduction(recurred=False):
+def introduction():
     os.system("clear")
     introduction_screen.print_screen()
-    if recurred:
-        print("Please input valid command")
     selection = input("> ")
     global player
     player = create_player(selection)
     enter_kitchen()
-    introduction(recurred=True)
+
     
 def create_player(selection):
     player = Player(selection, kitchen, inventory = [])
     return player
 
-def get_screen(screen, recurred=False):
+def get_screen(screen, recurred=False, message=""):
     os.system("clear")
     screen.print_screen()
-    selection = input("> ")
+    if message:
+        print(message)
     if recurred:
         print("Please input valid command")
+    selection = input("> ")
     for option in get_options(screen):
         if selection.lower() in option.lower():
             screen.options[option]()
-    move_player(screen, recurred=True)
+    get_screen(screen, recurred=True)
 
 
 def get_options(screen):
@@ -42,6 +42,7 @@ def get_options(screen):
 
 
 def inspect(recurred=False):
+    current_location = lambda: get_screen(player.current_location.screen)
     inspect_screen.title = player.current_location.name
     inspect_screen.art = player.current_location.screen.art
     inspect_screen.width = player.current_location.screen.width
@@ -52,8 +53,9 @@ def inspect(recurred=False):
     """
     CURSOR.execute(sql)
     inspectables = CURSOR.fetchall()
-    i = 1
+    i = 2
     options = []
+    options.append(f"1. Return")
     for inspectable in inspectables:
         choice = f"{i}. {inspectable[0]}"
         options.append(choice)
@@ -61,20 +63,23 @@ def inspect(recurred=False):
     inspect_screen.options = options
     os.system("clear")
     inspect_screen.print_screen()
-    selection = input("> ")
     if recurred:
         print("Please input valid command")
+    selection = input("> ")
+    if selection.lower() in "1. return":
+        get_screen(player.current_location.screen)
     for option in options:
         if selection.lower() in option.lower():
             for inspectable in inspectables:
                 if option.split()[1] in inspectable[0]:
                     handle_inspectable(inspectable)
+    inspect(recurred=True)
 
 
-def handle_inspectable(inspectable):
+def handle_inspectable(inspectable, recurred = False, message = ""):
     def current_player_location(): return get_screen(player.current_location.screen)
-    def add_item(): return take_item(inspectable[0])
-    def use_up_item(): return use_item(inspectable[0])
+    def add_item(): return take_item(inspectable)
+    def use_up_item(): return use_item(inspectable)
     inspectable_screen.title = f"{inspectable[0]}"
     inspectable_screen.content = f"{inspectable[1]}"
     inspectable_screen.art = [inspectable_object.art for inspectable_object in Inspectable.all if inspectable_object.name == inspectable[0]][0]
@@ -83,11 +88,23 @@ def handle_inspectable(inspectable):
         "2. Take Item": add_item,
         "3. Use Item": use_up_item
     }
-    get_screen(inspectable_screen)
+    # get_screen(inspectable_screen)
+    os.system("clear")
+    inspectable_screen.print_screen()
+    if message:
+        print(message)
+    if recurred:
+        print("Please input valid command")
+    selection = input("> ")
+    for option in get_options(inspectable_screen):
+        if selection.lower() in option.lower():
+            inspectable_screen.options[option]()
+    handle_inspectable(inspectable, recurred=True)
+
 
 
 def take_item(inspectable):
-    item = [item for item in Item.all if item.inspectable.name == inspectable]
+    item = [item for item in Item.all if item.inspectable.name == inspectable[0]]
     if len(item) > 0 :
         item = item[0]
         sql = f"""
@@ -104,11 +121,13 @@ def take_item(inspectable):
             """
             CURSOR.execute(sql)
             CONN.commit()
+            handle_inspectable(inspectable, message=f"{item.name} added to inventory")
+    handle_inspectable(inspectable, message = "There's nothing here you can take")
 
 
 def use_item(inspectable):
     inspectable_object = [
-        inspectable_element for inspectable_element in Inspectable.all if inspectable_element.name == inspectable][0]
+        inspectable_element for inspectable_element in Inspectable.all if inspectable_element.name == inspectable[0]][0]
     for item in player.inventory:
         if inspectable_object.unlocker == item:
             item.keyhole.locked = False
@@ -127,11 +146,15 @@ def use_item(inspectable):
                 VALUES(?, ?, ?)
             """, (item.name, item.description, inspectable_object.grab_primary_key()))
             CONN.commit()
+            handle_inspectable(inspectable, message=f"{item.name} removed from inventory")
+    handle_inspectable(inspectable, message="You don't have anything to use here")
 
 
-def move_player(desired_location, recurred=False):
-    player.move(desired_location, "You cannot use this door")
-    get_screen(player.current_location.screen, recurred)
+def move_player(desired_location):
+    player.move(desired_location)
+    if player.current_location is not desired_location:
+        get_screen(player.current_location.screen, message="The door is locked")
+    get_screen(player.current_location.screen, message=f"You are in the {player.current_location.name}")
 
 ###### Game functionality ######
 
@@ -180,14 +203,13 @@ def enter_bedroom():
     move_player(bedroom)
 
 def enter_dining_room():
-    if dining_room.locked is False:
-        dining_room_screen.options = {
-            "1. Inventory": show_inventory,
-            "2. Inspect": inspect,
-            "3. Bedroom": enter_bedroom,
-            "4. Kitchen": enter_kitchen,
-        }
-        move_player(dining_room)
+    dining_room_screen.options = {
+        "1. Inventory": show_inventory,
+        "2. Inspect": inspect,
+        "3. Bedroom": enter_bedroom,
+        "4. Kitchen": enter_kitchen,
+    }
+    move_player(dining_room)
 
 def escape():
     escape_screen.options = {
