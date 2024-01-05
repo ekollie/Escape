@@ -16,7 +16,7 @@ def introduction(recurred=False):
     selection = input("> ")
     global player
     player = create_player(selection)
-    kitchen_room()
+    enter_kitchen()
     introduction(recurred=True)
     
 def create_player(selection):
@@ -85,21 +85,22 @@ def handle_inspectable(inspectable):
 
 
 def take_item(inspectable):
-    item = [item for item in Item.all if item.inspectable.name == inspectable][0]
-    sql = f"""
-        SELECT name
-        FROM item
-        WHERE name = '{item.name}'
-    """
-    CURSOR.execute(sql)
-    item_record = CURSOR.fetchone()[0]
-    if(item_record):
-        player.add_to_inventory(item)
+    item = [item for item in Item.all if item.inspectable.name == inspectable]
+    if len(item) > 0 :
         sql = f"""
-            DELETE FROM item WHERE name = '{item.name}'
+                SELECT name
+            FROM item
+            WHERE name = '{item[0].name}'
         """
         CURSOR.execute(sql)
-        CONN.commit()
+        item_record = CURSOR.fetchone()[0]
+        if(item_record):
+            player.add_to_inventory(item)
+            sql = f"""
+                DELETE FROM item WHERE name = '{item.name}'
+            """
+            CURSOR.execute(sql)
+            CONN.commit()
 
 
 def use_item(inspectable):
@@ -141,7 +142,6 @@ def show_inventory():
     inventory_screen.content = content
     get_screen(inventory_screen)
 
-
 def title_menu():
     title_screen.options = {
         "1. Play": introduction,
@@ -159,7 +159,7 @@ def help_menu():
 def quit_game():
     sys.exit()
 
-def kitchen_room():
+def enter_kitchen():
     kitchen_screen.options = {
         "1. Inventory": show_inventory,
         "2. Inspect": inspect,
@@ -176,17 +176,15 @@ def enter_bedroom():
     }
     move_player(bedroom)
 
-
 def enter_dining_room():
     if dining_room.locked is False:
         dining_room_screen.options = {
             "1. Inventory": show_inventory,
             "2. Inspect": inspect,
             "3. Bedroom": enter_bedroom,
-            "4. Kitchen": kitchen_room,
+            "4. Kitchen": enter_kitchen,
         }
         move_player(dining_room)
-
 
 def escape():
     escape_screen.options = {
