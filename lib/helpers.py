@@ -9,7 +9,7 @@ from seed import *
 def start_game():
     title_menu()
 
-def introduction():
+def introduction(): # handles player introduction
     os.system("clear")
     introduction_screen.print_screen()
     selection = input("> ")
@@ -18,11 +18,11 @@ def introduction():
     enter_kitchen()
 
     
-def create_player(selection):
+def create_player(selection): # creates player object
     player = Player(selection, kitchen, inventory = [])
     return player
 
-def get_screen(screen, recurred=False, message=""):
+def get_screen(screen, recurred=False, message=""): # displays the current screen and get user input
     os.system("clear")
     screen.print_screen()
     if message:
@@ -36,13 +36,12 @@ def get_screen(screen, recurred=False, message=""):
     get_screen(screen, recurred=True)
 
 
-def get_options(screen):
+def get_options(screen): # gets options available on the screen
     options = [option for option in screen.options]
     return options
 
 
-def inspect(recurred=False):
-    current_location = lambda: get_screen(player.current_location.screen)
+def inspect(recurred=False): # handles inspection of objects in a room
     inspect_screen.title = player.current_location.name
     inspect_screen.art = player.current_location.screen.art
     inspect_screen.width = player.current_location.screen.width
@@ -76,7 +75,7 @@ def inspect(recurred=False):
     inspect(recurred=True)
 
 
-def handle_inspectable(inspectable, recurred = False, message = ""):
+def handle_inspectable(inspectable, recurred = False, message = ""):  # handles inspectable objects
     def current_player_location(): return get_screen(player.current_location.screen)
     def add_item(): return take_item(inspectable)
     def use_up_item(): return use_item(inspectable)
@@ -103,7 +102,7 @@ def handle_inspectable(inspectable, recurred = False, message = ""):
 
 
 
-def take_item(inspectable):
+def take_item(inspectable): # takes item from an inspectable object
     item = [item for item in Item.all if item.inspectable.name == inspectable[0]]
     if len(item) > 0 :
         item = item[0]
@@ -125,7 +124,7 @@ def take_item(inspectable):
     handle_inspectable(inspectable, message = "There's nothing here you can take")
 
 
-def use_item(inspectable):
+def use_item(inspectable): # use item on an inspectable object
     inspectable_object = [
         inspectable_element for inspectable_element in Inspectable.all if inspectable_element.name == inspectable[0]][0]
     for item in player.inventory:
@@ -150,7 +149,7 @@ def use_item(inspectable):
     handle_inspectable(inspectable, message="You don't have anything to use here")
 
 
-def move_player(desired_location):
+def move_player(desired_location): # moves the player to a new location
     player.move(desired_location)
     if player.current_location is not desired_location:
         get_screen(player.current_location.screen, message="The door is locked")
@@ -158,7 +157,8 @@ def move_player(desired_location):
 
 ###### Game functionality ######
 
-def show_inventory():
+def show_inventory(): # shows the player's inventory
+
     def current_player_location(): return get_screen(player.current_location.screen)
     inventory_screen.title = player.name
     inventory_screen.options = {"1. Return": current_player_location}
@@ -168,7 +168,7 @@ def show_inventory():
     inventory_screen.content = content
     get_screen(inventory_screen)
 
-def title_menu():
+def title_menu(): # displays the title menu
     title_screen.options = {
         "1. Play": introduction,
         "2. Help": help_menu,
@@ -176,16 +176,16 @@ def title_menu():
     }
     get_screen(title_screen)
 
-def help_menu():
+def help_menu(): # displays the help menu
     help_screen.options = {
         "1. Return": title_menu
     }
     get_screen(help_screen)
 
-def quit_game():
+def quit_game(): # quits the game
     sys.exit()
 
-def enter_kitchen():
+def enter_kitchen(): # enters the kitchen location
     kitchen_screen.options = {
         "1. Inventory": show_inventory,
         "2. Inspect": inspect,
@@ -193,7 +193,7 @@ def enter_kitchen():
     }
     move_player(kitchen)
 
-def enter_bedroom():
+def enter_bedroom(): # enters the bedroom location
     bedroom_screen.options = {
         "1. Inventory": show_inventory,
         "2. Inspect": inspect,
@@ -202,7 +202,7 @@ def enter_bedroom():
     }
     move_player(bedroom)
 
-def enter_dining_room():
+def enter_dining_room(): # enters the dining room location
     dining_room_screen.options = {
         "1. Inventory": show_inventory,
         "2. Inspect": inspect,
@@ -211,7 +211,7 @@ def enter_dining_room():
     }
     move_player(dining_room)
 
-def escape():
+def escape(): # handle the escape screen
     escape_screen.options = {
         "1. Return": title_menu
     }
