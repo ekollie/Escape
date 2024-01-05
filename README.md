@@ -1,6 +1,6 @@
 # House Adventure Game!
 
-This is a CLI adventure game. The player mysteriously wakes up in a bedroom of a house. Throughout the house, items and clues lead to the players escaping!
+This is a CLI adventure game. The player mysteriously wakes up in a kitchen of a house. Throughout the house, items and clues lead to the players escaping!
 
 ## Create
 
